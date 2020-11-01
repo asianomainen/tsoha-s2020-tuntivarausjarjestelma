@@ -1,20 +1,20 @@
-<h1>Tuntivarausjärjestelmä</h1>
+#Tuntivarausjärjestelmä
 
 Sovellus kehitetään liikuntatuntien varaamiseen.
 
 <b>Sovelluksen ominaisuudet:</b>
 
 1. Käyttäjä pystyy luomaan käyttäjätilin
-	a. Käyttäjältä kerätyt tiedot:
-		1. Etunimi
-		2. Sukunimi
-		3. Sähköpostiosoite
-		4. Puhelinnumero
-	b. Käyttäjä voi olla ylläpitäjä, joka voi
-		1. lisätä ja poistaa liikuntatunteja
-		2. lisätä ja poistaa osallistujia liikuntatunneille
-		3. selata käyttäjien tietoja
-		4. poistaa käyttäjiä
+   - Käyttäjältä kerätyt tiedot:
+     - Etunimi
+     - Sukunimi
+     - Sähköpostiosoite
+     - Puhelinnumero
+   - Käyttäjä voi olla ylläpitäjä, joka voi
+     - lisätä ja poistaa liikuntatunteja
+     - lisätä ja poistaa osallistujia liikuntatunneille
+     - selata käyttäjien tietoja
+     - poistaa käyttäjiä
 
 2. Ilmoittautumisjärjestelmä
   a. Käyttäjä näkee liikuntatunnit kalenterinäkymästä
