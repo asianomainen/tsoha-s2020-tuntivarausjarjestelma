@@ -26,6 +26,5 @@ Sovellus kehitetään liikuntatuntien varaamiseen.
    - Tunnin voi varata korkeintaan kaksi viikkoa etukäteen
    - Ilmoittautumisen voi peruuttaa viimeistään 12h etukäteen
    - Mikäli tunti on täynnä, niin käyttäjä voi ilmoittautua varasijalle
-   - Mikäli tulee peruutus, niin varasijalaisille lähetetään tekstiviesti/sähköposti
    - Käyttäjä näkee tunnit mille hän on ilmoittautunut
-   - Käyttäjä näkee kuinka paljon tunnilla on tilaa (esim. 12/20)
+   - Käyttäjä näkee kuinka paljon tunnilla on tilaa (esim. "osallistujia 12/20")
