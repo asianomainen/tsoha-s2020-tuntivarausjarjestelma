@@ -19,7 +19,7 @@ Sovellus kehitetään liikuntatuntien varaamiseen.
 		4. poistaa käyttäjiä
 
 2. Ilmoittautumisjärjestelmä
-	a. Käyttäjä näkee liikuntatunnit kalenterinäkymästä
+  a. Käyttäjä näkee liikuntatunnit kalenterinäkymästä
   b. Tunnin voi varata korkeintaan kaksi viikkoa etukäteen
   c. Ilmoittautumisen voi peruuttaa viimeistään 12h etukäteen
   d. Mikäli tunti on täynnä, niin käyttäjä voi ilmoittautua varasijalle
