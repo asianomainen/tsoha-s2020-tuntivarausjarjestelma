@@ -12,9 +12,11 @@ Sovellus kehitetään liikuntatuntien varaamiseen.
      - Puhelinnumero
    - Käyttäjä voi olla ylläpitäjä, joka voi
      - lisätä ja poistaa liikuntatunteja
-     - lisätä ja poistaa osallistujia liikuntatunneille
+     - lisätä ja poistaa liikuntatuntien osallistujia
      - selata käyttäjien tietoja
      - poistaa käyttäjiä
+   - Käyttäjä voi päivittää tietojaan
+   - Käyttäjä voi poistaa tilinsä
 
 2. Ilmoittautumisjärjestelmä
    - Käyttäjä näkee liikuntatunnit kalenterinäkymästä
