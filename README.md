@@ -1,5 +1,3 @@
-# tsoha-s2020-tuntivarausjarjestelma
-
 <h1>Tuntivarausjärjestelmä</h1>
 
 Sovellus kehitetään liikuntatuntien varaamiseen.
