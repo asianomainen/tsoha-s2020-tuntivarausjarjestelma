@@ -2,7 +2,9 @@
 
 Sovellus kehitetään liikuntatuntien varaamiseen.
 
+
 <b>Sovelluksen ominaisuudet:</b>
+
 
 1. Käyttäjä pystyy luomaan käyttäjätilin
    - Käyttäjältä kerätyt tiedot:
@@ -17,6 +19,7 @@ Sovellus kehitetään liikuntatuntien varaamiseen.
      - lisätä ja poistaa liikuntatuntien osallistujia
      - selata käyttäjien tietoja
      - poistaa käyttäjiä
+
 
 2. Ilmoittautumisjärjestelmä
    - Käyttäjä näkee liikuntatunnit kalenterinäkymästä
