@@ -1,4 +1,4 @@
-#Tuntivarausjärjestelmä
+# Tuntivarausjärjestelmä
 
 Sovellus kehitetään liikuntatuntien varaamiseen.
 
