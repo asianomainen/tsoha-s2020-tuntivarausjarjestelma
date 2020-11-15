@@ -27,7 +27,7 @@ Sovellus kehitetään liikuntatuntien varaamiseen. Liikuntakeskuksen asiakas voi
    - [ ] Käyttäjä näkee liikuntatunnit kalenterinäkymästä 
      - Tunnit näkyvät tällä hetkellä listattuna etusivulla
    - [x] Käyttäjä voi ilmoittautua tunnille
-   - [ ] Käyttäjä voi peruuttaa ilmoittautumisensa
+   - [x] Käyttäjä voi peruuttaa ilmoittautumisensa
    - [ ] Tunnin voi varata korkeintaan kaksi viikkoa etukäteen
    - [ ] Ilmoittautumisen voi peruuttaa viimeistään 12h etukäteen
    - [ ] Mikäli tunti on täynnä, niin käyttäjä voi ilmoittautua varasijalle
