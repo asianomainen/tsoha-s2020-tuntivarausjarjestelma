@@ -1,0 +1,35 @@
+{% for message in get_flashed_messages() %}
+<p>{{ message }}</p>
+{% endfor%}
+
+{% if session.username %}
+<p>Olet kirjautunut nimellä {{ session.username }}</p>
+<a href="/account">Käyttäjätiedot ja ilmoittautumiset</a><br>
+<a href="/logout">Kirjaudu ulos</a><br>
+<a href="/new_lesson">Luo uusi liikuntatunti</a><br>
+<hr>
+{% for lesson in lessons %}
+Tunti: {{ lesson[1] }}<br>
+Paikkoja: {{ lesson[2] }}<br>
+Päivä: {{ lesson[3] }}<br>
+Alkaa: {{ lesson[4] }}<br>
+Kesto: {{ lesson[5] }} minuuttia<br>
+<form action="/sign_up" method="POST">
+<input type="hidden" id="id" name="id" value="{{ lesson[0] }}">
+<input type="submit" value="Ilmottaudu"><br>
+<hr>
+</form>
+{% endfor%}
+
+{% else %}
+<form action="/login" method="POST">
+<p>Käyttäjätunnus:<br>
+<input type="text" name="username"></p>
+<p>Salasana:<br>
+<input type="password" name="password"></p>
+<input type="submit" value="Kirjaudu">
+</form>
+<form action="/new_user" method="POST">
+<input type="submit" value="Luo uusi tunnus">
+</form>
+{% endif %}
