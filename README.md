@@ -49,5 +49,9 @@ Käytettävissä on myös valmiiksi luotu käyttäjätunnus:
 <b>Käyttäjänimi:</b> testi<br>
 <b>Salasana:</b> testi
 
-Sisäänkirjauduttuaan testaaja näkee etusivulla linkit muille sivuille ("Käyttäjätiedot", "Luo uusi liikuntatunti" ja "Kirjaudu ulos") ja yhden valmiiksi luodun liikuntatunnin, jolle hän voi ilmoittautua (ja perua ilmoittautumisensa). Mikäli testaaja luo uuden liikuntatunnin, niin se lisätään etusivulla näkyvään listaan. Testaaja voi myös hallinnoida käyttäjätietojaan etusivulla olevalla "Käyttäjätiedot" linkillä. Käyttäjätiedot-sivulla testaaja voi muokata käyttäjän tietoja tai poistaa käyttäjän kokonaan (testaamista varten luotua "testi" käyttäjää ei voi poistaa).
+Testatessa kannattaa huomioida sivun yläreunassa näkyvät viestit, esim. "Käyttäjätunnus tai salasana väärin.", "Ilmoittautuminen onnistui", yms.<br /><br />
+Mikäli kirjautumista yritetään tunnuksilla, joita ei ole luotu tai salasana syötetään väärin, niin käyttäjä saa ilmoitukset "Käyttäjätunnus tai salasana väärin."<br /><br />
+Sisäänkirjauduttuaan testaaja näkee etusivulla linkit muille sivuille ("Käyttäjätiedot", "Luo uusi liikuntatunti" ja "Kirjaudu ulos") ja yhden valmiiksi luodun liikuntatunnin, jolle hän voi ilmoittautua (ja perua ilmoittautumisensa).<br /><br />
+Mikäli testaaja luo uuden liikuntatunnin, niin se lisätään etusivulla näkyvään listaan.<br /><br />
+Testaaja voi myös hallinnoida käyttäjätietojaan etusivulla olevalla "Käyttäjätiedot" linkillä. Käyttäjätiedot-sivulla testaaja voi muokata käyttäjän tietoja tai poistaa käyttäjän kokonaan (testaamista varten luotua "testi" käyttäjää ei voi poistaa, mutta sen tietoja voi muokata).
 
