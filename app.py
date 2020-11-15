@@ -26,7 +26,7 @@ def login():
     result = db.session.execute(sql, {"username":username})
     user = result.fetchone()
     if user == None:
-        flash("Käyttäjätunnus tai salasana väärin.")
+        flash("Käyttäjätunnusta ei löytynyt.")
         return render_template("index.html")
     else:
         hash_value = user[0]
@@ -36,6 +36,12 @@ def login():
         else:
             flash("Käyttäjätunnus tai salasana väärin.")
             return render_template("index.html")
+
+# def is_admin():
+#     sql = "SELECT admin FROM users WHERE username=:username"
+#     result = db.session.execute(sql, {"username":username})
+#     admin = result.fetchone()
+#     return admin
 
 @app.route("/logout")
 def logout():
@@ -126,3 +132,16 @@ def account_update():
     flash("Tiedot päivitetty.")
 
     return render_template("/account.html")
+
+@app.route("/remove_account")
+def remove_account():
+    username = session["username"]
+
+    sql = "DELETE FROM users WHERE username=:username"
+    db.session.execute(sql, {"username":username})
+    db.session.commit()
+
+    flash("Käyttäjätunnus poistettu.")
+
+    del session["username"]
+    return redirect("/")
