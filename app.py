@@ -26,7 +26,7 @@ def login():
     result = db.session.execute(sql, {"username":username})
     user = result.fetchone()
     if user == None:
-        flash("Käyttäjätunnusta ei löytynyt.")
+        flash("Käyttäjätunnus tai salasana väärin.")
         return render_template("index.html")
     else:
         hash_value = user[0]
