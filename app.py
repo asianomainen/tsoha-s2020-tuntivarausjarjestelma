@@ -104,6 +104,23 @@ def sign_up():
 
     return redirect("/")
 
+@app.route("/undo_sign_up",methods=["POST"])
+def undo_sign_up():
+    username = session["username"]
+    lesson_id = request.form["id"]
+
+    sql = "SELECT id FROM users WHERE username=:username"
+    result = db.session.execute(sql, {"username":username})
+    user_id = result.fetchone()[0]
+    
+    sql = "DELETE FROM sign_ups WHERE lesson_id=:lesson_id AND user_id=:user_id"
+    db.session.execute(sql, {"lesson_id":lesson_id, "user_id":user_id})
+    db.session.commit()
+
+    flash("Ilmoittautuminen peruttu.")
+
+    return redirect("/")
+
 @app.route("/account")
 def account():
     username = session["username"]
