@@ -14,7 +14,7 @@ Sovellus kehitetään liikuntatuntien varaamiseen. Liikuntakeskuksen asiakas voi
      - [x] Sähköpostiosoite
      - [x] Puhelinnumero
    - [x] Käyttäjä voi päivittää tietojaan
-   - [ ] Käyttäjä voi poistaa tilinsä
+   - [x] Käyttäjä voi poistaa tilinsä
    - [ ] Käyttäjä voi olla ylläpitäjä, joka voi
      - [x] lisätä liikuntatunteja
      - [ ] poistaa liikuntatunteja
@@ -24,7 +24,8 @@ Sovellus kehitetään liikuntatuntien varaamiseen. Liikuntakeskuksen asiakas voi
 
 
 2. Ilmoittautumisjärjestelmä
-   - [ ] Käyttäjä näkee liikuntatunnit kalenterinäkymästä (tunnit näkyvät tällä hetkellä listattuna etusivulla)
+   - [ ] Käyttäjä näkee liikuntatunnit kalenterinäkymästä 
+     - Tunnit näkyvät tällä hetkellä listattuna etusivulla
    - [x] Käyttäjä voi ilmoittautua tunnille
    - [ ] Käyttäjä voi peruuttaa ilmoittautumisensa
    - [ ] Tunnin voi varata korkeintaan kaksi viikkoa etukäteen
