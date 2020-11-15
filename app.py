@@ -132,6 +132,7 @@ def account():
 
 @app.route("/account_update",methods=["POST"])
 def account_update():
+
     first_name = request.form["first_name"]
     last_name = request.form["last_name"]
     email = request.form["email"]
@@ -148,11 +149,15 @@ def account_update():
 
     flash("Tiedot päivitetty.")
 
-    return render_template("/account.html")
+    return redirect("/account")
 
 @app.route("/remove_account")
 def remove_account():
     username = session["username"]
+
+    if (username == "testi"):
+        flash("Testikäyttäjää ei voi poistaa")
+        return redirect("/account")
 
     sql = "DELETE FROM users WHERE username=:username"
     db.session.execute(sql, {"username":username})

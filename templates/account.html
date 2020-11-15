@@ -1,6 +1,6 @@
 {% for message in get_flashed_messages() %}
 <p>{{ message }}</p>
-{% endfor%}
+{% endfor %}
 
 <p>Olet kirjautunut nimellä {{ session.username }}</p>
 <a href="/">Palaa etusivulle</a><br>
@@ -8,13 +8,13 @@
 Muokkaa käyttäjätietoja:<br>
 <form action="/account_update" method="POST">
 Etunimi:
-<input type="text" name="first_name" size="15" value="{{ user_information[0] }}" required><br /><br />
+<input type="text" name="first_name" value="{{ user_information[0] }}" required><br /><br />
 Sukunimi:
-<input type="text" name="last_name" size="15" value="{{ user_information[1] }}" required><br /><br />
+<input type="text" name="last_name" value="{{ user_information[1] }}" required><br /><br />
 Sähköposti:
-<input type="text" name="email" size="15" value="{{ user_information[2] }}" required><br /><br />
+<input type="text" name="email" value="{{ user_information[2] }}" required><br /><br />
 Puhelinnumero:
-<input type="text" name="phone" size="15" value="{{ user_information[3] }}" required><br /><br />
+<input type="text" name="phone" value="{{ user_information[3] }}" required><br /><br />
 <input type="submit" value="Tallenna muutokset">
 </form><br>
 <form action="/remove_account">
