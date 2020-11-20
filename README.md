@@ -26,9 +26,9 @@ Sovellus kehitetään liikuntatuntien varaamiseen. Käyttäjä voi luoda käytt�
    - [ ] Käyttäjä näkee liikuntatunnit kalenterinäkymästä 
      - Tunnit näkyvät tällä hetkellä listattuna etusivulla
    - [x] Käyttäjä voi ilmoittautua tunnille
-     - [ ] Samalle tunnille ei voi ilmoittautua enemmän kuin kerran
+     - [x] Samalle tunnille ei voi ilmoittautua enemmän kuin kerran
    - [x] Käyttäjä voi peruuttaa ilmoittautumisensa
-     - [ ] Ilmoittautumisen voi peruuttaa vain mikäli käyttäjä on ilmoittautunut tunnille
+     - [x] Ilmoittautumisen voi peruuttaa vain mikäli käyttäjä on ilmoittautunut tunnille
    - [ ] Tunnin voi varata korkeintaan kaksi viikkoa etukäteen
    - [ ] Ilmoittautumisen voi peruuttaa viimeistään 12h etukäteen
    - [ ] Mikäli tunti on täynnä, niin käyttäjä voi ilmoittautua varasijalle
