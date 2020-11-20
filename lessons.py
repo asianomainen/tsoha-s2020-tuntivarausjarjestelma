@@ -4,9 +4,11 @@ from flask import flash
 
 def get_lessons():
     global all_lessons
-    sql = "SELECT id, name, spots, date, start, duration FROM lessons"
+    sql = "SELECT L.id, L.name, L.spots, L.date, L.start, L.duration, COUNT(S.id) " \
+          "FROM lessons L LEFT JOIN sign_ups S ON L.id=S.lesson_id GROUP BY L.id"
     result = db.session.execute(sql)
     all_lessons = result.fetchall()
+
     return all_lessons
 
 def new_lesson(name, spots, date, start, duration):
