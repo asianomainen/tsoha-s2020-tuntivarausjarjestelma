@@ -25,7 +25,7 @@ def register(username, password, first_name, last_name, email, phone):
     result = db.session.execute(sql, {"username":username})
     user = result.fetchone()
 
-    # 2 x Flash when creating account with existing username
+    # Bug: 2 x Flash when creating account with existing username
 
     if user is None:
         sql = "INSERT INTO users (username, password, first_name, last_name, email, phone) " \

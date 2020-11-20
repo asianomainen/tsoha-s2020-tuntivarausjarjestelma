@@ -21,19 +21,35 @@ def sign_up(username, lesson_id):
     result = db.session.execute(sql, {"username":username})
     user_id = result.fetchone()[0]
 
-    sql = "INSERT INTO sign_ups (lesson_id, user_id) VALUES (:lesson_id, :user_id)"
-    db.session.execute(sql, {"lesson_id":lesson_id, "user_id":user_id})
-    db.session.commit()
+    if contains(user_id) == True:
+        flash("Olet jo ilmoittautunut tälle tunnille.")
+    else:
+        sql = "INSERT INTO sign_ups (lesson_id, user_id) VALUES (:lesson_id, :user_id)"
+        db.session.execute(sql, {"lesson_id":lesson_id, "user_id":user_id})
+        db.session.commit()
 
-    flash("Ilmoittautuminen onnistui.")
+        flash("Ilmoittautuminen onnistui.")
 
 def undo_sign_up(username, lesson_id):
     sql = "SELECT id FROM users WHERE username=:username"
     result = db.session.execute(sql, {"username":username})
     user_id = result.fetchone()[0]
 
-    sql = "DELETE FROM sign_ups WHERE lesson_id=:lesson_id AND user_id=:user_id"
-    db.session.execute(sql, {"lesson_id":lesson_id, "user_id":user_id})
-    db.session.commit()
+    if contains(user_id) == True:
+        sql = "DELETE FROM sign_ups WHERE lesson_id=:lesson_id AND user_id=:user_id"
+        db.session.execute(sql, {"lesson_id":lesson_id, "user_id":user_id})
+        db.session.commit()
 
-    flash("Ilmoittautuminen peruttu.")
+        flash("Ilmoittautuminen peruttu.")
+    else:
+        flash("Et ole ilmoittautunut tälle tunnille.")
+
+def contains(user_id):
+    sql = "SELECT id FROM sign_ups WHERE user_id=:user_id"
+    result = db.session.execute(sql, {"user_id":user_id})
+    sign_up_id = result.fetchone()
+    
+    if sign_up_id is None:
+        return False
+    else:
+        return True
