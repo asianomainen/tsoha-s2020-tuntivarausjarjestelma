@@ -31,7 +31,7 @@ Sovellus kehitetään liikuntatuntien varaamiseen. Käyttäjä voi luoda käytt�
      - [x] Ilmoittautumisen voi peruuttaa vain mikäli käyttäjä on ilmoittautunut tunnille
    - [ ] Tunnin voi varata korkeintaan kaksi viikkoa etukäteen
    - [ ] Ilmoittautumisen voi peruuttaa viimeistään 12h etukäteen
-   - [ ] Mikäli tunti on täynnä, niin käyttäjä voi ilmoittautua varasijalle
+   - [x] Mikäli tunti on täynnä, niin käyttäjä voi ilmoittautua varasijalle
    - [ ] Käyttäjä näkee tunnit mille hän on ilmoittautunut
    - [ ] Käyttäjä näkee kuinka paljon tunnilla on tilaa (esim. "osallistujia 12/20")
 - [x] Koodin refaktorointi
