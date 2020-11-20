@@ -34,7 +34,7 @@ Sovellus kehitetään liikuntatuntien varaamiseen. Käyttäjä voi luoda käytt�
    - [ ] Mikäli tunti on täynnä, niin käyttäjä voi ilmoittautua varasijalle
    - [ ] Käyttäjä näkee tunnit mille hän on ilmoittautunut
    - [ ] Käyttäjä näkee kuinka paljon tunnilla on tilaa (esim. "osallistujia 12/20")
-- [ ] Koodin refaktorointi
+- [x] Koodin refaktorointi
    - Sovelluksen rakennetta tullaan muuttamaan laajasti. Toimintoja jaetaan järkevästi moduuleihin ja funktioihin ja koodin toisteisuutta vähennetään.
 
 <hr>
