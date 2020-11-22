@@ -20,7 +20,7 @@ Sovellus kehitetään liikuntatuntien varaamiseen. Käyttäjä voi luoda käytt�
      - [ ] muokata liikuntatunteja
      - [ ] poistaa liikuntatunteja
      - [ ] lisätä ja poistaa liikuntatuntien osallistujia
-     - [ ] selata käyttäjien tietoja
+     - [x] selata käyttäjien tietoja
      - [ ] poistaa käyttäjiä
 
 2. Ilmoittautumisjärjestelmä
