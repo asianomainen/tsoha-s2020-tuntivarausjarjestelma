@@ -5,27 +5,10 @@
 {% if session.user_id %}
 <p>Olet kirjautunut tunnuksella {{ session.username }}</p>
 <a href="/account">Käyttäjätiedot</a><br>
+<a href="/users">Hallinnoi käyttäjiä</a><br>
 <a href="/new_lesson">Luo uusi liikuntatunti</a><br /><br />
-
 <a href="/logout">Kirjaudu ulos</a><br>
 <hr>
-{% for lesson in lessons %}
-Tunti: {{ lesson[1] }}<br>
-Paikkoja jäljellä: {{ lesson[2] }}<br>
-Päivä: {{ lesson[3] }}<br>
-Alkaa: {{ lesson[4] }}<br>
-Kesto: {{ lesson[5] }} minuuttia<br /><br />
-<form action="/sign_up" method="POST">
-<input type="hidden" id="id" name="id" value="{{ lesson[0] }}">
-<input type="submit" value="Ilmoittaudu"><br>
-</form>
-<form action="/undo_sign_up" method="POST">
-<input type="hidden" id="id" name="id" value="{{ lesson[0] }}">
-<input type="submit" value="Peru ilmoittautuminen"><br>
-</form>
-<hr>
-{% endfor%}
-
 {% else %}
 <form action="/login" method="POST">
 <p>Käyttäjätunnus:<br>

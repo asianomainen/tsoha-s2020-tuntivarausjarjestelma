@@ -1,13 +1,14 @@
+from os import abort
 from app import app
 import users
 import lessons
-from flask import redirect, render_template, request, session
+from flask import redirect, render_template, request, session, abort
 from werkzeug.security import generate_password_hash
 
 
 @app.route("/")
 def index():
-    all_lessons = lessons.get_lessons()
+    all_lessons = lessons.get_all_lessons()
     return render_template("/index.html", lessons=all_lessons)
 
 @app.route("/login", methods=["GET", "POST"])
@@ -24,7 +25,7 @@ def login():
 
 @app.route("/logout")
 def logout():
-        users.logout()    
+        users.logout()
         return redirect("/")
 
 @app.route("/register",methods=["GET","POST"])
@@ -61,26 +62,26 @@ def new_lesson():
 
 @app.route("/sign_up", methods=["POST"])
 def sign_up():
-    username = session["username"]
+    user_id = session["user_id"]
     lesson_id = request.form["id"]
 
-    lessons.sign_up(username, lesson_id)
+    lessons.sign_up(user_id, lesson_id)
 
     return redirect("/")
 
 @app.route("/undo_sign_up", methods=["POST"])
 def undo_sign_up():
-    username = session["username"]
+    user_id = session["user_id"]
     lesson_id = request.form["id"]
 
-    lessons.undo_sign_up(username, lesson_id)
+    lessons.undo_sign_up(user_id, lesson_id)
 
     return redirect("/")
 
 @app.route("/account")
 def account():
-    username = session["username"]
-    user_information = users.account_information(username)
+    user_id = session["user_id"]
+    user_information = users.account_information(user_id)
 
     return render_template("/account.html", user_information=user_information)
 
@@ -98,8 +99,16 @@ def account_update():
 
 @app.route("/remove_account")
 def remove_account():
-    username = session["username"]
+    user_id = session["user_id"]
 
-    users.remove_account(username)
+    users.remove_account(user_id)
 
     return redirect("/")
+
+@app.route("/admin")
+def admin():
+    user_id = session["user_id"]
+    if users.is_admin(user_id):
+        return render_template("/admin.html")
+    else:
+        abort(403)

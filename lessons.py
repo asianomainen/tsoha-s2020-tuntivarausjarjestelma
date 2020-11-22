@@ -2,10 +2,10 @@ from db import db
 from flask import flash
 
 
-def get_lessons():
+def get_all_lessons():
     global all_lessons
-    sql = "SELECT L.id, L.name, L.spots, L.date, L.start, L.duration, COUNT(S.id) " \
-          "FROM lessons L LEFT JOIN sign_ups S ON L.id=S.lesson_id GROUP BY L.id"
+    sql = "SELECT L.id, L.name, L.spots-COUNT(S.id), L.date, L.start, L.duration " \
+          "FROM lessons L LEFT JOIN sign_ups S ON L.id=S.lesson_id GROUP BY L.id ORDER BY L.date"
     result = db.session.execute(sql)
     all_lessons = result.fetchall()
 
@@ -18,12 +18,8 @@ def new_lesson(name, spots, date, start, duration):
                              "start":start, "duration":duration})
     db.session.commit()
 
-def sign_up(username, lesson_id):
-    sql = "SELECT id FROM users WHERE username=:username"
-    result = db.session.execute(sql, {"username":username})
-    user_id = result.fetchone()[0]
-
-    if contains(user_id) == True:
+def sign_up(user_id, lesson_id):
+    if lesson_contains(user_id, lesson_id) == True:
         flash("Olet jo ilmoittautunut tälle tunnille.")
     else:
         if reserve(lesson_id) == False:
@@ -41,12 +37,8 @@ def sign_up(username, lesson_id):
             flash("Ilmoittautuminen varasijalle onnistui.")
         
 
-def undo_sign_up(username, lesson_id):
-    sql = "SELECT id FROM users WHERE username=:username"
-    result = db.session.execute(sql, {"username":username})
-    user_id = result.fetchone()[0]
-
-    if contains(user_id) == True:
+def undo_sign_up(user_id, lesson_id):
+    if lesson_contains(user_id, lesson_id) == True:
         sql = "DELETE FROM sign_ups WHERE lesson_id=:lesson_id AND user_id=:user_id"
         db.session.execute(sql, {"lesson_id":lesson_id, "user_id":user_id})
         db.session.commit()
@@ -55,9 +47,9 @@ def undo_sign_up(username, lesson_id):
     else:
         flash("Et ole ilmoittautunut tälle tunnille.")
 
-def contains(user_id):
-    sql = "SELECT id FROM sign_ups WHERE user_id=:user_id"
-    result = db.session.execute(sql, {"user_id":user_id})
+def lesson_contains(user_id, lesson_id):
+    sql = "SELECT id FROM sign_ups WHERE user_id=:user_id AND lesson_id=:lesson_id"
+    result = db.session.execute(sql, {"user_id":user_id, "lesson_id":lesson_id})
     sign_up_id = result.fetchone()
 
     if sign_up_id is None:
