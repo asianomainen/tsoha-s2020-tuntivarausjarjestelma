@@ -105,10 +105,11 @@ def remove_account():
 
     return redirect("/")
 
-@app.route("/admin")
-def admin():
+@app.route("/all_users")
+def all_users():
     user_id = session["user_id"]
     if users.is_admin(user_id):
-        return render_template("/admin.html")
+        all_users = users.get_users()
+        return render_template("/all_users.html", users=all_users)
     else:
         abort(403)

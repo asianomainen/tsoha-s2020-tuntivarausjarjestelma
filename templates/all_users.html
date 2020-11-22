@@ -1,0 +1,51 @@
+{% for message in get_flashed_messages() %}
+<p>{{ message }}</p>
+{% endfor %}
+
+{% if session.admin == True %}
+<h2>Olet kirjautunut ylläpitäjänä</h2>
+<a href="/all_users">Kaikkien käyttäjien tiedot</a><br>
+<a href="/new_lesson">Luo uusi liikuntatunti</a><br /><br />
+<a href="/logout">Kirjaudu ulos</a><br>
+<hr>
+
+<style>
+    table {
+      font-family: arial, sans-serif;
+      border-collapse: collapse;
+      width: 100%;
+    }
+    
+    td, th {
+      border: 1px solid #dddddd;
+      text-align: left;
+      padding: 8px;
+    }
+    
+    tr:nth-child(even) {
+      background-color: #dddddd;
+    }
+</style>
+</head>
+    
+<h2>Käyttäjät</h2>
+
+<table id="all_users">
+  <tr>
+    <th>Käyttäjänimi</th>
+    <th>Etunimi</th>
+    <th>Sukunimi</th>
+    <th>Sähköposti</th>
+    <th>Puhelinnumero</th>
+  </tr>
+  {% for user in users %}
+  <tr>
+    <td>{{ user[0] }}</td>
+    <td>{{ user[1] }}</td>
+    <td>{{ user[2] }}</td>
+    <td>{{ user[3] }}</td>
+    <td>{{ user[4] }}</td>
+  </tr>
+  {% endfor%}
+</table>
+{% endif %}

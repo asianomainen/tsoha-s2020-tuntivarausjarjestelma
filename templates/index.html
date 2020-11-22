@@ -2,10 +2,16 @@
 <p>{{ message }}</p>
 {% endfor %}
 
-{% if session.user_id %}
+{% if session.admin == True %}
+<h2>Olet kirjautunut ylläpitäjänä</h2>
+<a href="/all_users">Kaikkien käyttäjien tiedot</a><br>
+<a href="/new_lesson">Luo uusi liikuntatunti</a><br /><br />
+<a href="/logout">Kirjaudu ulos</a><br>
+<hr>
+
+{% elif session.user_id %}
 <p>Olet kirjautunut tunnuksella {{ session.username }}</p>
 <a href="/account">Käyttäjätiedot</a><br>
-<a href="/new_lesson">Luo uusi liikuntatunti</a><br /><br />
 
 <a href="/logout">Kirjaudu ulos</a><br>
 <hr>

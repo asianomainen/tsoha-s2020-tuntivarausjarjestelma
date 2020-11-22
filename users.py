@@ -14,12 +14,18 @@ def login(username, password):
         if check_password_hash(user[0], password):
             session["user_id"] = user[1]
             session["username"] = username
+            if is_admin(user[1]):
+                session["admin"] = True
             return True
         else:
             return False
 
 def logout():
     del session["user_id"]
+    try:
+        del session["admin"]
+    except:
+        "Voi ei"
 
 def register(username, hash_value, first_name, last_name, email, phone):
     sql = "SELECT username FROM users WHERE username=:username"
@@ -70,3 +76,12 @@ def is_admin(user_id):
 
     if admin == 1:
         return True
+
+def get_users():
+    global all_users
+    sql = "SELECT username, first_name, last_name, email, phone FROM users"
+    result = db.session.execute(sql)
+    users = result.fetchall()
+    db.session.commit()
+
+    return users
