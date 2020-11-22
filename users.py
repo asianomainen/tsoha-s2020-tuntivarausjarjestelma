@@ -25,7 +25,7 @@ def logout():
     try:
         del session["admin"]
     except:
-        "Voi ei"
+        return
 
 def register(username, hash_value, first_name, last_name, email, phone):
     sql = "SELECT username FROM users WHERE username=:username"
@@ -51,11 +51,11 @@ def account_information(user_id):
     result = db.session.execute(sql, {"user_id":user_id})
     return result.fetchone()
     
-def account_update(first_name, last_name, email, phone, username):
+def account_update(first_name, last_name, email, phone, user_id):
     sql = "UPDATE users SET first_name=:first_name, last_name=:last_name, " \
-          "email=:email, phone=:phone WHERE username=:username"
+          "email=:email, phone=:phone WHERE id=:user_id"
     db.session.execute(sql, {"first_name":first_name, "last_name":last_name,
-                             "email":email, "phone":phone, "username":username})
+                             "email":email, "phone":phone, "user_id":user_id})
     db.session.commit()
 
     flash("Tiedot päivitetty.")
@@ -79,9 +79,16 @@ def is_admin(user_id):
 
 def get_users():
     global all_users
-    sql = "SELECT username, first_name, last_name, email, phone FROM users"
+    sql = "SELECT id, username, first_name, last_name, email, phone FROM users"
     result = db.session.execute(sql)
     users = result.fetchall()
     db.session.commit()
 
     return users
+
+def get_user_id(username):
+    sql = "SELECT id FROM users WHERE username=:username"
+    result = db.session.execute(sql, {"username":username})
+    user_id = result.fetchone()[0]
+
+    return user_id

@@ -11,7 +11,7 @@
 
 {% elif session.user_id %}
 <p>Olet kirjautunut tunnuksella {{ session.username }}</p>
-<a href="/account">Käyttäjätiedot</a><br>
+<a href="/account/{{ session.user_id }}">Käyttäjätiedot</a><br>
 
 <a href="/logout">Kirjaudu ulos</a><br>
 <hr>

@@ -6,7 +6,7 @@
 <a href="/">Palaa etusivulle</a><br>
 <hr>
 Muokkaa käyttäjätietoja:<br>
-<form action="/account_update" method="POST">
+<form action="/account_update/{{ id }}" method="POST">
 Etunimi:
 <input type="text" name="first_name" value="{{ user_information[0] }}" required><br /><br />
 Sukunimi:
@@ -17,6 +17,6 @@ Puhelinnumero:
 <input type="text" name="phone" value="{{ user_information[3] }}" required><br /><br />
 <input type="submit" value="Tallenna muutokset">
 </form><br>
-<form action="/remove_account">
+<form action="/remove_account/{{ id }}">
 <input type="submit" value="Poista käyttäjä">
 </form>

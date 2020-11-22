@@ -13,23 +13,18 @@
     table {
       font-family: arial, sans-serif;
       border-collapse: collapse;
-      width: 100%;
+      width: 75%;
     }
-    
     td, th {
       border: 1px solid #dddddd;
       text-align: left;
       padding: 8px;
     }
-    
     tr:nth-child(even) {
       background-color: #dddddd;
     }
 </style>
-</head>
-    
 <h2>Käyttäjät</h2>
-
 <table id="all_users">
   <tr>
     <th>Käyttäjänimi</th>
@@ -37,14 +32,18 @@
     <th>Sukunimi</th>
     <th>Sähköposti</th>
     <th>Puhelinnumero</th>
+    <th></th>
   </tr>
-  {% for user in users %}
   <tr>
-    <td>{{ user[0] }}</td>
+    {% for user in users %}
     <td>{{ user[1] }}</td>
     <td>{{ user[2] }}</td>
     <td>{{ user[3] }}</td>
     <td>{{ user[4] }}</td>
+    <td>{{ user[5] }}</td>
+    <td>
+        <a href="/account/{{ user[0] }}">Muokkaa</a>
+    </td>
   </tr>
   {% endfor%}
 </table>

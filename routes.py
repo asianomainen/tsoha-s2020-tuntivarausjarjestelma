@@ -47,18 +47,22 @@ def register():
 
 @app.route("/new_lesson", methods=["GET", "POST"])
 def new_lesson():
-    if request.method == "GET":
-        return render_template("new_lesson.html")
-    if request.method == "POST":
-        name = request.form["name"]
-        spots = request.form["spots"]
-        date = request.form["date"]
-        start = request.form["start"]
-        duration = request.form["duration"]
+    user_id = session["user_id"]
+    if users.is_admin(user_id):
+        if request.method == "GET":
+            return render_template("new_lesson.html")
+        if request.method == "POST":
+            name = request.form["name"]
+            spots = request.form["spots"]
+            date = request.form["date"]
+            start = request.form["start"]
+            duration = request.form["duration"]
 
-        lessons.new_lesson(name, spots, date, start, duration)
+            lessons.new_lesson(name, spots, date, start, duration)
 
-        return redirect("/")
+            return redirect("/")
+    else:
+        abort(403)
 
 @app.route("/sign_up", methods=["POST"])
 def sign_up():
@@ -78,31 +82,27 @@ def undo_sign_up():
 
     return redirect("/")
 
-@app.route("/account")
-def account():
+@app.route("/account/<int:id>")
+def account(id):
     user_id = session["user_id"]
-    user_information = users.account_information(user_id)
+    if user_id == id or session["admin"] == True:
+        user_information = users.account_information(id)
+        return render_template("/account.html", id=id, user_information=user_information)
 
-    return render_template("/account.html", user_information=user_information)
-
-@app.route("/account_update", methods=["POST"])
-def account_update():
+@app.route("/account_update/<int:id>", methods=["POST"])
+def account_update(id):
     first_name = request.form["first_name"]
     last_name = request.form["last_name"]
     email = request.form["email"]
     phone = request.form["phone"]
-    username = session["username"]
 
-    users.account_update(first_name, last_name, email, phone, username)
+    users.account_update(first_name, last_name, email, phone, id)
 
-    return redirect("/account")
+    return redirect(f"/account/{id}")
 
-@app.route("/remove_account")
-def remove_account():
-    user_id = session["user_id"]
-
-    users.remove_account(user_id)
-
+@app.route("/remove_account/<int:id>")
+def remove_account(id):
+    users.remove_account(id)
     return redirect("/")
 
 @app.route("/all_users")
