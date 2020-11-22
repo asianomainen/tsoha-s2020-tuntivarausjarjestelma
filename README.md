@@ -20,7 +20,8 @@ Sovellus kehitetään liikuntatuntien varaamiseen. Käyttäjä voi luoda käytt�
      - [ ] muokata liikuntatunteja
      - [ ] poistaa liikuntatunteja
      - [ ] lisätä ja poistaa liikuntatuntien osallistujia
-     - [ ] selata käyttäjien tietoja
+     - [x] selata käyttäjien tietoja
+     - [ ] muokata käyttäjien tietoja
      - [ ] poistaa käyttäjiä
 
 2. Ilmoittautumisjärjestelmä
@@ -37,6 +38,7 @@ Sovellus kehitetään liikuntatuntien varaamiseen. Käyttäjä voi luoda käytt�
    - [x] Käyttäjä näkee kuinka paljon tunnilla on tilaa (esim. "Paikkoja varattu 12/20")
 - [x] Koodin refaktorointi
    - Sovelluksen rakennetta tullaan muuttamaan laajasti. Toimintoja jaetaan järkevästi moduuleihin ja funktioihin ja koodin toisteisuutta vähennetään.
+- [ ] HTML-sivupohjan luominen ja sen käyttöönotto
 
 <hr>
 <b>Sovelluksen testaaminen:</b>
