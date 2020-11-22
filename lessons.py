@@ -1,6 +1,5 @@
-from db import db
 from flask import flash
-
+from db import db
 
 def get_all_lessons():
     global all_lessons
@@ -30,12 +29,13 @@ def sign_up(user_id, lesson_id):
             flash("Ilmoittautuminen onnistui.")
 
         else:
-            sql = "INSERT INTO sign_ups (lesson_id, user_id, reserve) VALUES (:lesson_id, :user_id, 1)"
+            sql = "INSERT INTO sign_ups (lesson_id, user_id, reserve) " \
+                  "VALUES (:lesson_id, :user_id, 1)"
             db.session.execute(sql, {"lesson_id":lesson_id, "user_id":user_id})
             db.session.commit()
 
             flash("Ilmoittautuminen varasijalle onnistui.")
-        
+
 
 def undo_sign_up(user_id, lesson_id):
     if lesson_contains(user_id, lesson_id) == True:
@@ -54,11 +54,10 @@ def lesson_contains(user_id, lesson_id):
 
     if sign_up_id is None:
         return False
-    else:
-        return True
+    return True
 
 def reserve(lesson_id):
-    return (spots(lesson_id) <= total_participants(lesson_id))
+    return spots(lesson_id) <= total_participants(lesson_id)
 
 def spots(lesson_id):
     sql = "SELECT spots FROM lessons WHERE id=:lesson_id"

@@ -1,6 +1,6 @@
-from db import db
 from flask import session, flash
 from werkzeug.security import check_password_hash
+from db import db
 
 def login(username, password):
     sql = "SELECT password, id FROM users WHERE username=:username"
@@ -24,7 +24,7 @@ def logout():
     del session["user_id"]
     try:
         del session["admin"]
-    except:
+    except Exception:
         return
 
 def register(username, hash_value, first_name, last_name, email, phone):
@@ -35,16 +35,17 @@ def register(username, hash_value, first_name, last_name, email, phone):
     if user is None:
         sql = "INSERT INTO users (username, password, first_name, last_name, email, phone) " \
               "VALUES (:username, :password, :first_name, :last_name, :email, :phone)"
-        db.session.execute(sql, {"username":username, "password":hash_value, "first_name":first_name,
-                                "last_name":last_name, "email":email, "phone":phone})
+        db.session.execute(sql, {"username":username, "password":hash_value,
+                                 "first_name":first_name, "last_name":last_name,
+                                 "email":email, "phone":phone})
         db.session.commit()
     else:
         flash("Käyttäjänimi varattu. Valitse toinen käyttäjänimi.")
         username = " "
-        return login(username,hash_value)
+        return login(username, hash_value)
 
     flash("Käyttäjätunnus luotu. Voit nyt kirjautua sisään.")
-    return login(username,hash_value)
+    return login(username, hash_value)
 
 def account_information(user_id):
     sql = "SELECT first_name, last_name, email, phone FROM users WHERE id=:user_id"
@@ -78,7 +79,6 @@ def is_admin(user_id):
         return True
 
 def get_users():
-    global all_users
     sql = "SELECT id, username, first_name, last_name, email, phone FROM users"
     result = db.session.execute(sql)
     users = result.fetchall()

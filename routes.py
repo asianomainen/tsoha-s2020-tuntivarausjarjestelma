@@ -1,9 +1,8 @@
-from os import abort
+from flask import redirect, render_template, request, session, abort
+from werkzeug.security import generate_password_hash
 from app import app
 import users
 import lessons
-from flask import redirect, render_template, request, session, abort
-from werkzeug.security import generate_password_hash
 
 
 @app.route("/")
@@ -20,15 +19,14 @@ def login():
         password = request.form["password"]
         if users.login(username, password):
             return redirect("/")
-        else:
-            return render_template("/index.html")
+        return render_template("/index.html")
 
 @app.route("/logout")
 def logout():
-        users.logout()
-        return redirect("/")
+    users.logout()
+    return redirect("/")
 
-@app.route("/register",methods=["GET","POST"])
+@app.route("/register", methods=["GET", "POST"])
 def register():
     if request.method == "GET":
         return render_template("register.html")
@@ -42,8 +40,7 @@ def register():
         phone = request.form["phone"]
         if users.register(username, hash_value, first_name, last_name, email, phone):
             return redirect("/")
-        else:
-            return redirect("/")
+        return redirect("/")
 
 @app.route("/new_lesson", methods=["GET", "POST"])
 def new_lesson():
