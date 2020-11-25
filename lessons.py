@@ -92,3 +92,19 @@ def remove_lesson(lesson_id):
     db.session.commit()
 
     flash("Tunti poistettu.")
+
+def get_participants(lesson_id):
+    sql = "SELECT A.id, username, first_name, last_name, email, phone " \
+          "FROM users A LEFT JOIN sign_ups B ON A.id=B.user_id WHERE B.lesson_id=:lesson_id"
+    result = db.session.execute(sql, {"lesson_id":lesson_id})
+    participants = result.fetchall()
+    db.session.commit()
+
+    return participants
+
+def remove_participant(user_id, lesson_id):
+    sql = "DELETE FROM sign_ups WHERE user_id=:user_id AND lesson_id=:lesson_id"
+    db.session.execute(sql, {"user_id":user_id, "lesson_id":lesson_id})
+    db.session.commit()
+
+    flash("Käyttäjä poistettu tunnilta.")

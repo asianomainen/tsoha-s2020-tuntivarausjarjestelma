@@ -100,9 +100,11 @@ def account_update(id):
 @app.route("/remove_account/<int:id>")
 def remove_account(id):
     users.remove_account(id)
+
     user_id = session["user_id"]
     if users.is_admin(user_id):
         return redirect("/all_users")
+
     return redirect("/")
 
 @app.route("/all_users")
@@ -128,7 +130,8 @@ def lesson(id):
     user_id = session["user_id"]
     if users.is_admin(user_id):
         lesson = lessons.lesson_information(id)
-        return render_template("/lesson.html", id=id, lesson_information=lesson)
+        participants = lessons.get_participants(id)
+        return render_template("/lesson.html", id=id, lesson_information=lesson, participants=participants)
     else:
         abort(403)
 
@@ -148,3 +151,8 @@ def lesson_update(id):
 def remove_lesson(id):
     lessons.remove_lesson(id)
     return redirect("/all_lessons")
+
+@app.route("/remove_participant/<int:user_id>/<int:lesson_id>")
+def remove_participant(user_id, lesson_id):
+    lessons.remove_participant(user_id, lesson_id)
+    return redirect(f"/lesson/{lesson_id}")
