@@ -67,7 +67,11 @@ def remove_account(user_id):
     db.session.commit()
 
     flash("Käyttäjätunnus poistettu.")
-
+    
+    user_id = session["user_id"]
+    if is_admin(user_id):
+        return
+    
     logout()
 
 def is_admin(user_id):

@@ -100,6 +100,9 @@ def account_update(id):
 @app.route("/remove_account/<int:id>")
 def remove_account(id):
     users.remove_account(id)
+    user_id = session["user_id"]
+    if users.is_admin(user_id):
+        return redirect("/all_users")
     return redirect("/")
 
 @app.route("/all_users")
