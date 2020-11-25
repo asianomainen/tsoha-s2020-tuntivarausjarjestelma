@@ -1,8 +1,8 @@
-{% for message in get_flashed_messages() %}
-<p>{{ message }}</p>
-{% endfor %}
+{% extends "layout.html" %}
 
+{% block content %}
 <h2>Olet kirjautunut ylläpitäjänä</h2>
+<a href="/">Palaa etusivulle</a><br>
 <a href="/all_users">Kaikkien käyttäjien tiedot</a><br>
 <a href="/new_lesson">Luo uusi liikuntatunti</a><br /><br />
 <a href="/logout">Kirjaudu ulos</a><br>
@@ -29,3 +29,4 @@
 <input type="submit" value="Luo uusi tunti">
 
 </form>
+{% endblock %}

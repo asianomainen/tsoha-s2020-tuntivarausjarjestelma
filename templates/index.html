@@ -1,20 +1,7 @@
-{% for message in get_flashed_messages() %}
-<p>{{ message }}</p>
-{% endfor %}
+<!doctype html>
+{% extends "layout.html" %}
 
-{% if session.admin == True %}
-<h2>Olet kirjautunut ylläpitäjänä</h2>
-<a href="/all_users">Kaikkien käyttäjien tiedot</a><br>
-<a href="/new_lesson">Luo uusi liikuntatunti</a><br /><br />
-<a href="/logout">Kirjaudu ulos</a><br>
-<hr>
-
-{% elif session.user_id %}
-<p>Olet kirjautunut tunnuksella {{ session.username }}</p>
-<a href="/account/{{ session.user_id }}">Käyttäjätiedot</a><br>
-
-<a href="/logout">Kirjaudu ulos</a><br>
-<hr>
+{% block content %}
 {% for lesson in lessons %}
 Tunti: {{ lesson[1] }}<br>
 Paikkoja jäljellä: {{ lesson[2] }}<br>
@@ -31,16 +18,4 @@ Kesto: {{ lesson[5] }} minuuttia<br /><br />
 </form>
 <hr>
 {% endfor%}
-
-{% else %}
-<form action="/login" method="POST">
-<p>Käyttäjätunnus:<br>
-<input type="text" name="username"></p>
-<p>Salasana:<br>
-<input type="password" name="password"></p>
-<input type="submit" value="Kirjaudu">
-</form>
-<form action="/register">
-<input type="submit" value="Luo uusi tunnus">
-</form>
-{% endif %}
+{% endblock %}

@@ -1,14 +1,7 @@
-{% for message in get_flashed_messages() %}
-<p>{{ message }}</p>
-{% endfor %}
+<!doctype html>
+{% extends "layout.html" %}
 
-{% if session.admin == True %}
-<h2>Olet kirjautunut ylläpitäjänä</h2>
-<a href="/all_users">Kaikkien käyttäjien tiedot</a><br>
-<a href="/new_lesson">Luo uusi liikuntatunti</a><br /><br />
-<a href="/logout">Kirjaudu ulos</a><br>
-<hr>
-
+{% block content %}
 <style>
     table {
       font-family: arial, sans-serif;
@@ -47,4 +40,4 @@
   </tr>
   {% endfor%}
 </table>
-{% endif %}
+{% endblock %}

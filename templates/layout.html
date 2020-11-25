@@ -1,14 +1,25 @@
+<!doctype html>
+<h1>Movemint</h1>
+
 {% for message in get_flashed_messages() %}
 <p>{{ message }}</p>
 {% endfor %}
 
-{% if session.user_id %}
-<p>Olet kirjautunut tunnuksella {{ session.username }}</p>
-<a href="/account">Käyttäjätiedot</a><br>
-<a href="/users">Hallinnoi käyttäjiä</a><br>
+{% if session.admin == True %}
+<h2>Olet kirjautunut ylläpitäjänä</h2>
+<a href="/">Etusivu</a><br>
+<a href="/all_users">Kaikkien käyttäjien tiedot</a><br>
 <a href="/new_lesson">Luo uusi liikuntatunti</a><br /><br />
 <a href="/logout">Kirjaudu ulos</a><br>
 <hr>
+
+{% elif session.user_id %}
+<p>Olet kirjautunut tunnuksella {{ session.username }}</p>
+<a href="/">Etusivu</a><br>
+<a href="/account/{{ session.user_id }}">Käyttäjätiedot</a><br>
+<a href="/logout">Kirjaudu ulos</a><br>
+<hr>
+
 {% else %}
 <form action="/login" method="POST">
 <p>Käyttäjätunnus:<br>
@@ -21,3 +32,5 @@
 <input type="submit" value="Luo uusi tunnus">
 </form>
 {% endif %}
+
+{% block content %}{% endblock %}

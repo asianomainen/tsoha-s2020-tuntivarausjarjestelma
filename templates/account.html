@@ -1,10 +1,7 @@
-{% for message in get_flashed_messages() %}
-<p>{{ message }}</p>
-{% endfor %}
+<!doctype html>
+{% extends "layout.html" %}
 
-<p>Olet kirjautunut tunnuksella {{ session.username }}</p>
-<a href="/">Palaa etusivulle</a><br>
-<hr>
+{% block content %}
 Muokkaa käyttäjätietoja:<br>
 <form action="/account_update/{{ id }}" method="POST">
 Etunimi:
@@ -20,3 +17,4 @@ Puhelinnumero:
 <form action="/remove_account/{{ id }}">
 <input type="submit" value="Poista käyttäjä">
 </form>
+{% endblock %}
