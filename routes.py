@@ -7,7 +7,7 @@ import lessons
 
 @app.route("/")
 def index():
-    all_lessons = lessons.get_all_lessons()
+    all_lessons = lessons.get_lessons()
     return render_template("/index.html", lessons=all_lessons)
 
 @app.route("/login", methods=["GET", "POST"])
@@ -110,3 +110,38 @@ def all_users():
         return render_template("/all_users.html", users=all_users)
     else:
         abort(403)
+
+@app.route("/all_lessons")
+def all_lessons():
+    user_id = session["user_id"]
+    if users.is_admin(user_id):
+        all_lessons = lessons.get_lessons()
+        return render_template("/all_lessons.html", lessons=all_lessons)
+    else:
+        abort(403)
+
+@app.route("/lesson/<int:id>")
+def lesson(id):
+    user_id = session["user_id"]
+    if users.is_admin(user_id):
+        lesson = lessons.lesson_information(id)
+        return render_template("/lesson.html", id=id, lesson_information=lesson)
+    else:
+        abort(403)
+
+@app.route("/lesson_update/<int:id>", methods=["POST"])
+def lesson_update(id):
+    name = request.form["name"]
+    spots = request.form["spots"]
+    date = request.form["date"]
+    start = request.form["start"]
+    duration = request.form["duration"]
+
+    lessons.lesson_update(name, spots, date, start, duration, id)
+
+    return redirect("/all_lessons")
+
+@app.route("/remove_lesson/<int:id>")
+def remove_lesson(id):
+    lessons.remove_lesson(id)
+    return redirect("/all_lessons")

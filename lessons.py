@@ -1,7 +1,7 @@
 from flask import flash
 from db import db
 
-def get_all_lessons():
+def get_lessons():
     global all_lessons
     sql = "SELECT L.id, L.name, L.spots-COUNT(S.id), L.date, L.start, L.duration " \
           "FROM lessons L LEFT JOIN sign_ups S ON L.id=S.lesson_id GROUP BY L.id ORDER BY L.date"
@@ -42,7 +42,6 @@ def undo_sign_up(user_id, lesson_id):
         sql = "DELETE FROM sign_ups WHERE lesson_id=:lesson_id AND user_id=:user_id"
         db.session.execute(sql, {"lesson_id":lesson_id, "user_id":user_id})
         db.session.commit()
-
         flash("Ilmoittautuminen peruttu.")
     else:
         flash("Et ole ilmoittautunut tälle tunnille.")
@@ -72,3 +71,24 @@ def total_participants(lesson_id):
     participants = result.fetchone()[0]
 
     return participants
+
+def lesson_information(lesson_id):
+    sql = "SELECT name, spots, date, start, duration FROM lessons WHERE id=:lesson_id"
+    result = db.session.execute(sql, {"lesson_id":lesson_id})
+    return result.fetchone()
+
+def lesson_update(name, spots, date, start, duration, lesson_id):
+    sql = "UPDATE lessons SET name=:name, spots=:spots, " \
+          "date=:date, start=:start, duration=:duration WHERE id=:lesson_id"
+    db.session.execute(sql, {"name":name, "spots":spots, "date":date, "start":start,
+                             "duration":duration, "lesson_id":lesson_id})
+    db.session.commit()
+
+    flash("Tiedot päivitetty.")
+
+def remove_lesson(lesson_id):
+    sql = "DELETE FROM lessons WHERE id=:lesson_id"
+    db.session.execute(sql, {"lesson_id":lesson_id})
+    db.session.commit()
+
+    flash("Tunti poistettu.")

@@ -1,0 +1,22 @@
+<!doctype html>
+{% extends "layout.html" %}
+
+{% block content %}
+Muokkaa tunnin tietoja:<br>
+<form action="/lesson_update/{{ id }}" method="POST">
+Nimi:
+<input type="text" name="name" value="{{ lesson_information[0] }}" required><br /><br />
+Paikkoja:
+<input type="text" name="spots" value="{{ lesson_information[1] }}" required><br /><br />
+Päivä:
+<input type="date" name="date" value="{{ lesson_information[2] }}" required><br /><br />
+Aika:
+<input type="time" name="start" value="{{ lesson_information[3] }}" required><br /><br />
+Kesto (min):
+<input type="text" name="duration" value="{{ lesson_information[4] }}" required><br /><br />
+<input type="submit" value="Tallenna muutokset">
+</form><br>
+<form action="/remove_lesson/{{ id }}">
+<input type="submit" value="Poista tunti">
+</form>
+{% endblock %}

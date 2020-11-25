@@ -1,13 +1,7 @@
+<!doctype html>
 {% extends "layout.html" %}
 
 {% block content %}
-<h2>Olet kirjautunut ylläpitäjänä</h2>
-<a href="/">Palaa etusivulle</a><br>
-<a href="/all_users">Kaikkien käyttäjien tiedot</a><br>
-<a href="/new_lesson">Luo uusi liikuntatunti</a><br /><br />
-<a href="/logout">Kirjaudu ulos</a><br>
-<hr>
-
 <h2>Luo uusi tunti</h2>
 <form action="/new_lesson" method="POST">
 
@@ -21,7 +15,7 @@
 <input type="date" name="date" required></p>
 
 <p>Aika:<br>
-<input type=time name="start" required></p>
+<input type="time" name="start" required></p>
 
 <p>Kesto (min):<br>
 <input type="text" name="duration" required></p>
