@@ -38,7 +38,7 @@ Sovellus kehitetään liikuntatuntien varaamiseen. Käyttäjä voi luoda käytt�
    - [x] Käyttäjä näkee kuinka paljon tunnilla on tilaa (esim. "Paikkoja varattu 12/20")
 - [x] Koodin refaktorointi
    - Sovelluksen rakennetta tullaan muuttamaan laajasti. Toimintoja jaetaan järkevästi moduuleihin ja funktioihin ja koodin toisteisuutta vähennetään.
-- [ ] HTML-sivupohjan luominen ja sen käyttöönotto
+- [x] HTML-sivupohjan luominen ja sen käyttöönotto
 
 <hr>
 <b>Sovelluksen testaaminen:</b>
