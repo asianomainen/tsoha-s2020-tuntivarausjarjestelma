@@ -32,31 +32,39 @@ Sovellus kehitetään liikuntatuntien varaamiseen. Käyttäjä voi luoda käytt�
      - [x] Samalle tunnille ei voi ilmoittautua enemmän kuin kerran
    - [x] Käyttäjä voi peruuttaa ilmoittautumisensa
      - [x] Ilmoittautumisen voi peruuttaa vain mikäli käyttäjä on ilmoittautunut tunnille
-   - [ ] Tunnin voi varata korkeintaan kaksi viikkoa etukäteen
    - [ ] Ilmoittautumisen voi peruuttaa viimeistään 12h etukäteen
    - [x] Mikäli tunti on täynnä, niin käyttäjä voi ilmoittautua varasijalle
    - [ ] Käyttäjä näkee tunnit mille hän on ilmoittautunut
    - [x] Käyttäjä näkee kuinka paljon tunnilla on tilaa (esim. "Paikkoja varattu 12/20")
 - [x] Koodin refaktorointi
-   - Sovelluksen rakennetta tullaan muuttamaan laajasti. Toimintoja jaetaan järkevästi moduuleihin ja funktioihin ja koodin toisteisuutta vähennetään.
 - [x] HTML-sivupohjan luominen ja sen käyttöönotto
-- [ ] Käyttäjän tietojen vaatimusten määrittely (käyttäjätunnuksen pituus, salasanan pituus ja erikoismerkit, yms.)
+- [ ] Käyttäjätietojen vaatimusten määrittely (käyttäjätunnuksen pituus, salasanan pituus ja erikoismerkit, yms.)
+- [ ] Sovelluksen ulkoasun toteutus
 
 <hr>
-<b>Sovelluksen testaaminen:</b>
+<h2>Sovelluksen testaaminen:</h2>
 
 Linkki sovellukseen: https://movemint.herokuapp.com/
 
 Sovellusta voi testata yllä mainittujen ominaisuuksien puitteissa. Testaaja voi halutessaan luoda uuden tunnuksen testaamista varten, koska tällä hetkellä sovelluksessa kaikki toiminnot ovat tavallisen käyttäjän suoritettavissa.<br>
 
-Käytettävissä on myös valmiiksi luotu käyttäjätunnus:
+<b>Testaamista varten on luotu sekä testikäyttäjä että ylläpitäjä:</b> 
 
-<b>Käyttäjänimi:</b> testi<br>
-<b>Salasana:</b> testi
+<h3>Käyttäjä</h3>
+<br>
+<b>Käyttäjänimi:</b>testi<br>
+<b>Salasana:</b>testi
 
 Testatessa kannattaa huomioida sivun yläreunassa näkyvät viestit, esim. "Käyttäjätunnus tai salasana väärin.", "Ilmoittautuminen onnistui", yms.<br /><br />
 Mikäli kirjautumista yritetään tunnuksilla, joita ei ole luotu tai salasana syötetään väärin, niin käyttäjä saa ilmoitukset "Käyttäjätunnus tai salasana väärin."<br /><br />
-Sisäänkirjauduttuaan testaaja näkee etusivulla linkit muille sivuille ("Käyttäjätiedot", "Luo uusi liikuntatunti" ja "Kirjaudu ulos") ja yhden valmiiksi luodun liikuntatunnin, jolle hän voi ilmoittautua (ja perua ilmoittautumisensa).<br /><br />
-Mikäli testaaja luo uuden liikuntatunnin, niin se lisätään etusivulla näkyvään listaan.<br /><br />
+Sisäänkirjauduttuaan testaaja näkee etusivulla linkit muille sivuille ("Etusivu", "Käyttäjätiedot" ja "Kirjaudu ulos") ja kaksi valmiiksi luotua liikuntatuntia, jolle hän voi ilmoittautua (ja perua ilmoittautumisensa).<br /><br />
 Testaaja voi myös hallinnoida käyttäjätietojaan etusivulla olevalla "Käyttäjätiedot" linkillä. Käyttäjätiedot-sivulla testaaja voi muokata käyttäjän tietoja tai poistaa käyttäjän kokonaan (testaamista varten luotua "testi" käyttäjää ei voi poistaa, mutta sen tietoja voi muokata).
 
+<hr>
+
+<h3>Ylläpitäjä</h3>
+<br>
+<b>Käyttäjänimi:</b>admin<br>
+<b>Salasana:</b>admin
+
+Mikäli testaaja luo uuden liikuntatunnin, niin se lisätään etusivulla näkyvään listaan.<br /><br />
