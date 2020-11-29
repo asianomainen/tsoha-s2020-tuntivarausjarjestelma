@@ -62,6 +62,8 @@ def account_update(first_name, last_name, email, phone, user_id):
     flash("Tiedot päivitetty.")
 
 def remove_account(user_id):
+    if user_id == 5:
+        return
     sql = "DELETE FROM users WHERE id=:user_id"
     db.session.execute(sql, {"user_id":user_id})
     db.session.commit()
