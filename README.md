@@ -52,19 +52,23 @@ Sovellusta voi testata yllä mainittujen ominaisuuksien puitteissa. Testaaja voi
 
 <h3>Käyttäjä</h3>
 <br>
-<b>Käyttäjänimi:</b>testi<br>
-<b>Salasana:</b>testi
+<b>Käyttäjänimi:</b> testi<br>
+<b>Salasana:</b> testi
+
+Sisäänkirjauduttuaan testaaja näkee etusivulla linkit muille sivuille ("Etusivu", "Käyttäjätiedot" ja "Kirjaudu ulos") ja kaksi valmiiksi luotua liikuntatuntia, jolle hän voi ilmoittautua (ja perua ilmoittautumisensa).<br /><br />
 
 Testatessa kannattaa huomioida sivun yläreunassa näkyvät viestit, esim. "Käyttäjätunnus tai salasana väärin.", "Ilmoittautuminen onnistui", yms.<br /><br />
-Mikäli kirjautumista yritetään tunnuksilla, joita ei ole luotu tai salasana syötetään väärin, niin käyttäjä saa ilmoitukset "Käyttäjätunnus tai salasana väärin."<br /><br />
-Sisäänkirjauduttuaan testaaja näkee etusivulla linkit muille sivuille ("Etusivu", "Käyttäjätiedot" ja "Kirjaudu ulos") ja kaksi valmiiksi luotua liikuntatuntia, jolle hän voi ilmoittautua (ja perua ilmoittautumisensa).<br /><br />
-Testaaja voi myös hallinnoida käyttäjätietojaan etusivulla olevalla "Käyttäjätiedot" linkillä. Käyttäjätiedot-sivulla testaaja voi muokata käyttäjän tietoja tai poistaa käyttäjän kokonaan (testaamista varten luotua "testi" käyttäjää ei voi poistaa, mutta sen tietoja voi muokata).
 
-<hr>
+Mikäli kirjautumista yritetään tunnuksilla, joita ei ole luotu tai salasana syötetään väärin, niin käyttäjä saa ilmoitukset "Käyttäjätunnus tai salasana väärin."<br /><br />
+
+Käyttäjä voi ilmoittautua vain kerran yhdelle tunnille. Hän ei myöskään voi perua ilmoittautumistaan mikäli hän ei ole ilmoittautunut tunnille.<br /><br />
+
+Testaaja voi myös hallinnoida käyttäjätietojaan etusivulla olevalla "Käyttäjätiedot" linkillä. Käyttäjätiedot-sivulla testaaja voi muokata käyttäjän tietoja tai poistaa käyttäjän kokonaan (testaamista varten luotua "testi" käyttäjää ei voi poistaa, mutta sen tietoja voi muokata).
 
 <h3>Ylläpitäjä</h3>
 <br>
-<b>Käyttäjänimi:</b>admin<br>
-<b>Salasana:</b>admin
+<b>Käyttäjänimi:</b> admin<br>
+<b>Salasana:</b> admin
 
-Mikäli testaaja luo uuden liikuntatunnin, niin se lisätään etusivulla näkyvään listaan.<br /><br />
+Mikäli testaaja luo uuden liikuntatunnin, niin se lisätään etusivulla näkyvään listaan. Ylläpitäjä voi myös tarkas<br>
+Testaaja voi ylläpitäjänä tarkastella kaikkien käyttäjien tietoja, muokata niitä ja myös poistaa käyttäjiä kokonaan.
