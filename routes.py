@@ -158,3 +158,12 @@ def remove_lesson(id):
 def remove_participant(user_id, lesson_id):
     lessons.remove_participant(user_id, lesson_id)
     return redirect(f"/lesson/{lesson_id}")
+
+@app.route("/my_lessons/<int:id>")
+def my_lessons(id):
+    user_id = session["user_id"]
+    if user_id == id:
+        all_user_lessons = lessons.get_user_lessons(user_id)
+        return render_template("/my_lessons.html", lessons=all_user_lessons)
+    else:
+        abort(403)

@@ -1,0 +1,39 @@
+<!doctype html>
+{% extends "layout.html" %}
+
+{% block content %}
+<style>
+    table {
+      font-family: arial, sans-serif;
+      border-collapse: collapse;
+      width: 75%;
+    }
+    td, th {
+      border: 1px solid #dddddd;
+      text-align: left;
+      padding: 8px;
+    }
+    tr:nth-child(even) {
+      background-color: #dddddd;
+    }
+</style>
+<h2>Kaikki tunnit</h2>
+<table id="all_lessons">
+  <tr>
+    <th>Nimi</th>
+    <th>Päivä</th>
+    <th>Aika</th>
+    <th>Kesto (min)</th>
+    <th></th>
+  </tr>
+  <tr>
+    {% for lesson in lessons %}
+    <td>{{ lesson[0] }}</td>
+    <td>{{ lesson[1] }}</td>
+    <td>{{ lesson[2] }}</td>
+    <td>{{ lesson[3] }}</td>
+
+  </tr>
+  {% endfor%}
+</table>
+{% endblock %}
