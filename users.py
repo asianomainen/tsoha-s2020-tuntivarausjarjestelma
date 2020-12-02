@@ -14,6 +14,7 @@ def login(username, password):
         if check_password_hash(user[0], password):
             session["user_id"] = user[1]
             session["username"] = username
+            session["admin"] = False
             if is_admin(user[1]):
                 session["admin"] = True
             return True
@@ -71,11 +72,8 @@ def remove_account(user_id):
 
     flash("Käyttäjätunnus poistettu.")
     
-    user_id = session["user_id"]
-    if is_admin(user_id):
+    if session["admin"] == True:
         return
-    
-    logout()
 
 def is_admin(user_id):
     sql = "SELECT admin FROM users WHERE id=:user_id"

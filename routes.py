@@ -99,12 +99,14 @@ def account_update(id):
 
 @app.route("/remove_account/<int:id>")
 def remove_account(id):
-    users.remove_account(id)
-
     user_id = session["user_id"]
-    if users.is_admin(user_id):
-        return redirect("/all_users")
-
+    if user_id == id or session["admin"] == True:
+        users.remove_account(id)
+        if session["admin"] == True:
+            return redirect("/all_users")
+    else:
+        abort(403)
+    users.logout()
     return redirect("/")
 
 @app.route("/all_users")
