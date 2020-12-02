@@ -3,19 +3,25 @@
 
 {% block content %}
 {% for lesson in lessons %}
-Tunti: {{ lesson[1] }}<br>
-Paikkoja jäljellä: {{ lesson[2] }}<br>
-Päivä: {{ lesson[3] }}<br>
-Alkaa: {{ lesson[4] }}<br>
-Kesto: {{ lesson[5] }} minuuttia<br /><br />
+
+{{ lesson[1] }}<br>
+{{ lesson[2] }}<br>
+{{ lesson[3] }}<br>
+{{ lesson[4] }} minuuttia<br /><br />
+
+{% if lesson[5] == 0 %}
+<button type="button" onclick="alert('Tunti on täynnä')">Tunti on täynnä</button><br>
+{% else %}
 <form action="/sign_up" method="POST">
-<input type="hidden" id="id" name="id" value="{{ lesson[0] }}">
-<input type="submit" value="Ilmoittaudu"><br>
+    <input type="hidden" id="id" name="id" value="{{ lesson[0] }}">
+    <input type="submit" value="Ilmoittaudu"><br>
 </form>
-<form action="/undo_sign_up" method="POST">
-<input type="hidden" id="id" name="id" value="{{ lesson[0] }}">
-<input type="submit" value="Peru ilmoittautuminen"><br>
-</form>
-<hr>
+{% endif %}
+<br>
 {% endfor%}
 {% endblock %}
+<form action="/undo_sign_up" method="POST">
+    <input type="hidden" id="id" name="id" value="{{ lesson[0] }}">
+    <input type="submit" value="Peru ilmoittautuminen"><br>
+</form>
+<hr>
