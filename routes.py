@@ -101,6 +101,7 @@ def account_update(id):
 def remove_account(id):
     user_id = session["user_id"]
     if user_id == id or session["admin"] == True:
+        users.remove_sign_ups(id)
         users.remove_account(id)
         if session["admin"] == True:
             return redirect("/all_users")

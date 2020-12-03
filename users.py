@@ -97,3 +97,8 @@ def get_user_id(username):
     user_id = result.fetchone()[0]
 
     return user_id
+
+def remove_sign_ups(user_id):
+    sql = "DELETE FROM sign_ups WHERE user_id=:user_id"
+    db.session.execute(sql, {"user_id":user_id})
+    db.session.commit()
