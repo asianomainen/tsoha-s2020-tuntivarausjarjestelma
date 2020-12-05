@@ -19,7 +19,6 @@ Sovellus kehitetään liikuntatuntien varaamiseen. Käyttäjä voi luoda käytt�
      - [x] lisätä liikuntatunteja
      - [x] muokata liikuntatunteja
      - [x] poistaa liikuntatunteja
-     - [ ] lisätä liikuntatuntien osallistujia
      - [x] poistaa liikuntatuntien osallistujia
      - [x] selata käyttäjien tietoja
      - [x] muokata käyttäjien tietoja
@@ -36,6 +35,8 @@ Sovellus kehitetään liikuntatuntien varaamiseen. Käyttäjä voi luoda käytt�
    - [x] Mikäli tunti on täynnä, niin käyttäjä voi ilmoittautua varasijalle
    - [x] Käyttäjä näkee tunnit mille hän on ilmoittautunut
    - [x] Käyttäjä näkee kuinka paljon tunnilla on tilaa (esim. "Paikkoja varattu 12/20")
+   - [ ] Menneet tunnit poistuvat automaattisesti tuntilistalta
+   - [ ] Tunnit voi luoda toistuvina (esim. joka maanantai, 3 viikon ajan)
 - [x] Koodin refaktorointi
 - [x] HTML-sivupohjan luominen ja sen käyttöönotto
 - [ ] Käyttäjätietojen vaatimusten määrittely (käyttäjätunnuksen pituus, salasanan pituus, liikuntatunnnin kesto, yms.)
