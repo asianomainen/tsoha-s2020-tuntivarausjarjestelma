@@ -109,8 +109,9 @@ def remove_participant(user_id, lesson_id):
     flash("Käyttäjä poistettu tunnilta.")
 
 def get_user_lessons(user_id):
-    sql = "SELECT L.name, L.date, L.start, L.duration FROM lessons L LEFT JOIN sign_ups S ON L.id=S.lesson_id  WHERE S.user_id=:user_id"
+    sql = "SELECT L.id, L.name, L.date, L.start, L.duration FROM " \
+    "lessons L LEFT JOIN sign_ups S ON L.id=S.lesson_id  WHERE S.user_id=:user_id"
     result = db.session.execute(sql, {"user_id":user_id})
     all_user_lessons = result.fetchall()
-
+ 
     return all_user_lessons

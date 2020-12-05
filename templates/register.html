@@ -11,12 +11,12 @@
 <input type="tel" id="phone" name="phone" placeholder="0401234567" pattern="[0-9]{10}" required></p>
 
 <p>Käyttäjätunnus:<br>
-<input type="text" name="username" required></p>
+<input type="text" name="username" minlength="6" required></p>
 
 <p>Sähköposti:<br>
 <input type="text" name="email" required></p>
 
 <p>Salasana:<br>
-<input name="password" required="required" type="password" id="password"></p><br>
+<input name="password" type="password" id="password" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{6,}" required></p><br>
 <input type="submit" value="Luo uusi tunnus">
 </form>

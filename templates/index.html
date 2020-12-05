@@ -2,26 +2,67 @@
 {% extends "layout.html" %}
 
 {% block content %}
+<style>
+    table {
+    font-family: arial, sans-serif;
+    border-collapse: collapse;
+    width: 50%;
+    }
+    td, th {
+    border: 1px solid #dddddd;
+    text-align: left;
+    padding: 8px;
+    }
+    tr:nth-child(even) {
+    background-color: #dddddd;
+    }
+</style>
+<h2>Tunnit</h2>
+<table id="all_lessons">
+<tr>
+    <th>Nimi</th>
+    <th>Päivä</th>
+    <th>Aika</th>
+    <th>Kesto (min)</th>
+    <th></th>
+</tr>
+
 {% for lesson in lessons %}
+<tr>
+    <td>{{ lesson[1] }}</td>
+    <td>{{ lesson[2] }}</td>
+    <td>{{ lesson[3] }}</td>
+    <td>{{ lesson[4] }}</td>
+    <td>
+        {% if session.user_id %}
 
-{{ lesson[1] }}<br>
-{{ lesson[2] }}<br>
-{{ lesson[3] }}<br>
-{{ lesson[4] }} minuuttia<br /><br />
+        {% set ns = namespace(found=false) %}
 
-{% if lesson[5] == 0 %}
-<button type="button" onclick="alert('Tunti on täynnä')">Tunti on täynnä</button><br>
-{% else %}
-<form action="/sign_up" method="POST">
-    <input type="hidden" id="id" name="id" value="{{ lesson[0] }}">
-    <input type="submit" value="Ilmoittaudu"><br>
-</form>
-{% endif %}
-<br>
+        {% for user_lesson in user_lessons %}
+            {% if user_lesson[0] == lesson[0] %}
+                {% set ns.found = true %}
+            {% endif %}
+        {% endfor%}
+
+        {% if ns.found %}
+        <form action="/undo_sign_up" method="POST">
+            <input type="hidden" id="id" name="id" value="{{ lesson[0] }}">
+            <input type="submit" value="Peru ilmoittautuminen"><br>
+        </form>
+        {% elif lesson[5] == 0 %}
+        <button type="button" onclick="alert('Tunti on täynnä')">Tunti on täynnä</button><br>
+        {% else %}
+        <form action="/sign_up" method="POST">
+            <input type="hidden" id="id" name="id" value="{{ lesson[0] }}">
+            <input type="submit" value="Ilmoittaudu"><br>
+        </form>
+        {% endif %}
+
+        {% else %}
+        <button type="button" onclick="alert('Kirjaudu sisään ilmoittautuaksesi tunnille.')">Kirjaudu</button><br>
+        {% endif %}
+    </td>
+</tr>
 {% endfor%}
+</table>
 {% endblock %}
-<form action="/undo_sign_up" method="POST">
-    <input type="hidden" id="id" name="id" value="{{ lesson[0] }}">
-    <input type="submit" value="Peru ilmoittautuminen"><br>
-</form>
-<hr>

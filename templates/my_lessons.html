@@ -6,7 +6,7 @@
     table {
       font-family: arial, sans-serif;
       border-collapse: collapse;
-      width: 75%;
+      width: 50%;
     }
     td, th {
       border: 1px solid #dddddd;
@@ -28,11 +28,16 @@
   </tr>
   <tr>
     {% for lesson in lessons %}
-    <td>{{ lesson[0] }}</td>
     <td>{{ lesson[1] }}</td>
     <td>{{ lesson[2] }}</td>
     <td>{{ lesson[3] }}</td>
-
+    <td>{{ lesson[4] }}</td>
+    <td>
+        <form action="/undo_sign_up" method="POST">
+            <input type="hidden" id="id" name="id" value="{{ lesson[0] }}">
+            <input type="submit" value="Peru ilmoittautuminen"><br>
+        </form>
+    </td>
   </tr>
   {% endfor%}
 </table>

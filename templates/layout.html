@@ -1,37 +1,53 @@
 <!doctype html>
-<h1>Movemint</h1>
+<!-- <link rel="stylesheet" href="/static/main.css?31111111111111111111111111111111"> -->
+<meta name="viewport" content="width=device-width, initial-scale=1">
 
+<div class="header">
+    <h1>Movemint</h1>
+</div>
+    
 {% for message in get_flashed_messages() %}
 <p>{{ message }}</p>
 {% endfor %}
 
 {% if session.admin == True %}
 <h2>Olet kirjautunut ylläpitäjänä</h2>
-<a href="/">Etusivu</a><br>
-<a href="/all_users">Kaikki käyttäjät</a><br>
-<a href="/all_lessons">Kaikki tunnit</a><br>
-<a href="/new_lesson">Luo uusi liikuntatunti</a><br /><br />
-<a href="/logout">Kirjaudu ulos</a><br>
+<nav>  
+    <ul> 
+        <li><a href="/">Etusivu</a></li>
+        <li><a href="/all_users">Kaikki käyttäjät</a></li>
+        <li><a href="/all_lessons">Kaikki tunnit</a></li>
+        <li><a href="/new_lesson">Luo uusi liikuntatunti</a></li>
+        <li><a href="/logout">Kirjaudu ulos</a></li>
+    </ul> 
+</nav>
 <hr>
 
 {% elif session.user_id %}
 <p>Olet kirjautunut tunnuksella {{ session.username }}</p>
-<a href="/">Etusivu</a><br>
-<a href="/account/{{ session.user_id }}">Käyttäjätiedot</a><br>
-<a href="/logout">Kirjaudu ulos</a><br>
+<nav>
+    <ul>
+        <li><a href="/">Etusivu</a></li>
+        <li><a href="/my_lessons/{{ session.user_id }}">Omat tunnit</a></li>
+        <li><a href="/account/{{ session.user_id }}">Käyttäjätiedot</a></li>
+        <li><a href="/logout">Kirjaudu ulos</a></li>
+    </ul>
+</nav>
 <hr>
 
 {% else %}
 <form action="/login" method="POST">
-<p>Käyttäjätunnus:<br>
-<input type="text" name="username"></p>
-<p>Salasana:<br>
-<input type="password" name="password"></p>
-<input type="submit" value="Kirjaudu">
+    <p>Käyttäjätunnus:<br>
+    <input type="text" name="username"></p>
+    <p>Salasana:<br>
+    <input type="password" name="password"></p>
+    <input type="submit" value="Kirjaudu">
 </form>
 <form action="/register">
-<input type="submit" value="Luo uusi tunnus">
+    <input type="submit" value="Luo uusi tunnus">
 </form>
 {% endif %}
 
-{% block content %}{% endblock %}
+<div class="content">
+    {% block content %}{% endblock %}
+</div>

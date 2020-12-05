@@ -1,14 +1,19 @@
-from flask import redirect, render_template, request, session, abort
+from flask import redirect, render_template, request, session, abort, flash
 from werkzeug.security import generate_password_hash
 from app import app
 import users
 import lessons
 
-
 @app.route("/")
 def index():
-    all_lessons = lessons.get_lessons()
-    return render_template("/index.html", lessons=all_lessons)
+    try:
+        user_id = session["user_id"]
+        all_lessons = lessons.get_lessons()
+        user_lessons = lessons.get_user_lessons(user_id)
+        return render_template("/index.html", lessons=all_lessons, user_lessons=user_lessons)
+    except:
+        all_lessons = lessons.get_lessons()
+        return render_template("/index.html", lessons=all_lessons)
 
 @app.route("/login", methods=["GET", "POST"])
 def login():
@@ -17,9 +22,8 @@ def login():
     if request.method == "POST":
         username = request.form["username"]
         password = request.form["password"]
-        if users.login(username, password):
-            return redirect("/")
-        return render_template("/index.html")
+        users.login(username, password)
+        return redirect("/")
 
 @app.route("/logout")
 def logout():
@@ -38,8 +42,7 @@ def register():
         last_name = request.form["last_name"]
         email = request.form["email"]
         phone = request.form["phone"]
-        if users.register(username, hash_value, first_name, last_name, email, phone):
-            return redirect("/")
+        users.register(username, hash_value, first_name, last_name, email, phone)
         return redirect("/")
 
 @app.route("/new_lesson", methods=["GET", "POST"])

@@ -19,6 +19,7 @@ def login(username, password):
                 session["admin"] = True
             return True
         else:
+            flash("Käyttäjätunnus tai salasana väärin.")
             return False
 
 def logout():
