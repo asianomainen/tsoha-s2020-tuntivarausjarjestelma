@@ -24,3 +24,9 @@ CREATE TABLE sign_ups (
 	user_id INTEGER REFERENCES users(id),
 	reserve INTEGER DEFAULT 0
 );
+
+CREATE TABLE feedback (
+	id SERIAL PRIMARY KEY,
+	user_id INTEGER REFERENCES users(id) DEFAULT 0,
+	message TEXT
+);

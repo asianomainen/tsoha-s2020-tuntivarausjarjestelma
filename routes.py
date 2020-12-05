@@ -1,6 +1,7 @@
 from flask import redirect, render_template, request, session, abort, flash
 from werkzeug.security import generate_password_hash
 from app import app
+import feedback
 import users
 import lessons
 
@@ -171,3 +172,19 @@ def my_lessons(id):
         return render_template("/my_lessons.html", lessons=all_user_lessons)
     else:
         abort(403)
+
+@app.route("/send_feedback", methods=["GET", "POST"])
+def send_feedback():
+    if request.method == "GET":
+        return render_template("/send_feedback.html")
+    if request.method == "POST":
+        try:
+            message = request.form["message"]
+            user_id = session["user_id"]
+            feedback.send_feedback(message, user_id)
+        except:
+            message = request.form["message"]
+            user_id = 0
+            feedback.send_feedback(message, user_id)
+
+    return redirect("/")
