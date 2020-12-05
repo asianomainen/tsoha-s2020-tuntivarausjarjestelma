@@ -25,8 +25,7 @@ Sovellus kehitetään liikuntatuntien varaamiseen. Käyttäjä voi luoda käytt�
      - [x] poistaa käyttäjiä
 
 2. Ilmoittautumisjärjestelmä
-   - [ ] Käyttäjä näkee tulevat liikuntatunnit etusivulla listattuna 
-     - Tunnit näkyvät tällä hetkellä listattuna etusivulla
+   - [x] Käyttäjä näkee tulevat liikuntatunnit etusivulla listattuna 
    - [x] Käyttäjä voi ilmoittautua tunnille
      - [x] Samalle tunnille ei voi ilmoittautua enemmän kuin kerran
    - [x] Käyttäjä voi peruuttaa ilmoittautumisensa
