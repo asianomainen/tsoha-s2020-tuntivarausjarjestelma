@@ -24,16 +24,14 @@
     <th>Paikkoja jäljellä</th>
     <th>Päivä</th>
     <th>Aika</th>
-    <th>Kesto (min)</th>
     <th></th>
   </tr>
   <tr>
     {% for lesson in lessons %}
     <td>{{ lesson[1] }}</td>
     <td>{{ lesson[5] }}</td>
-    <td>{{ lesson[3] }}</td>
-    <td>{{ lesson[2] }}</td>
-    <td>{{ lesson[4] }}</td>
+    <td>{{ lesson[2].strftime('%d.%m.%Y') }}</td>
+    <td>{{ lesson[3].strftime('%H:%M') }} - {{ lesson[4].strftime('%H:%M') }}</td>
     <td>
         <a href="/lesson/{{ lesson[0] }}">Muokkaa</a>
     </td>

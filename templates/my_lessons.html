@@ -17,28 +17,31 @@
       background-color: #dddddd;
     }
 </style>
-<h2>Kaikki tunnit</h2>
+<h2>Omat tunnit</h2>
+
+{% if lessons|length > 0 %}
 <table id="all_lessons">
   <tr>
     <th>Nimi</th>
     <th>Päivä</th>
     <th>Aika</th>
-    <th>Kesto (min)</th>
     <th></th>
   </tr>
   <tr>
     {% for lesson in lessons %}
     <td>{{ lesson[1] }}</td>
-    <td>{{ lesson[2] }}</td>
-    <td>{{ lesson[3] }}</td>
-    <td>{{ lesson[4] }}</td>
+    <td>{{ lesson[2].strftime('%d.%m.%Y') }}</td>
+    <td>{{ lesson[3].strftime('%H:%M') }} - {{ lesson[4].strftime('%H:%M') }}</td>
     <td>
         <form action="/undo_sign_up" method="POST">
             <input type="hidden" id="id" name="id" value="{{ lesson[0] }}">
-            <input type="submit" value="Peru ilmoittautuminen"><br>
+            <input type="submit" value="Peru"><br>
         </form>
     </td>
   </tr>
   {% endfor%}
 </table>
+{% else %}
+<b>Sinulla ei ole tulevia tuntivarauksia. Voit varata tunteja <a href="/">etusivulta</a>.</b>
+{% endif %}
 {% endblock %}

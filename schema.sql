@@ -14,8 +14,8 @@ CREATE TABLE lessons (
 	name TEXT,
 	spots INTEGER,
 	date DATE,
-	start TIME,
-	duration INTEGER
+	starts TIME,
+	ends TIME
 );
 
 CREATE TABLE sign_ups (
@@ -25,8 +25,9 @@ CREATE TABLE sign_ups (
 	reserve INTEGER DEFAULT 0
 );
 
-CREATE TABLE feedback (
+CREATE TABLE messages (
 	id SERIAL PRIMARY KEY,
-	user_id INTEGER REFERENCES users(id) DEFAULT 0,
-	message TEXT
+	user_id INTEGER REFERENCES users(id),
+	message TEXT,
+	email TEXT
 );

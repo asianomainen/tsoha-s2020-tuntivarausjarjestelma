@@ -1,7 +1,7 @@
-from flask import redirect, render_template, request, session, abort, flash
+from flask import redirect, render_template, request, session, abort
 from werkzeug.security import generate_password_hash
 from app import app
-import feedback
+import messages
 import users
 import lessons
 
@@ -56,10 +56,10 @@ def new_lesson():
             name = request.form["name"]
             spots = request.form["spots"]
             date = request.form["date"]
-            start = request.form["start"]
-            duration = request.form["duration"]
+            starts = request.form["starts"]
+            ends = request.form["ends"]
 
-            lessons.new_lesson(name, spots, date, start, duration)
+            lessons.new_lesson(name, spots, date, starts, ends)
 
             return redirect("/")
     else:
@@ -138,7 +138,8 @@ def lesson(id):
     if users.is_admin(user_id):
         lesson = lessons.lesson_information(id)
         participants = lessons.get_participants(id)
-        return render_template("/lesson.html", id=id, lesson_information=lesson, participants=participants)
+        return render_template("/lesson.html", id=id, lesson_information=lesson, 
+                                                      participants=participants)
     else:
         abort(403)
 
@@ -147,10 +148,10 @@ def lesson_update(id):
     name = request.form["name"]
     spots = request.form["spots"]
     date = request.form["date"]
-    start = request.form["start"]
-    duration = request.form["duration"]
+    starts = request.form["starts"]
+    ends = request.form["ends"]
 
-    lessons.lesson_update(name, spots, date, start, duration, id)
+    lessons.lesson_update(name, spots, date, starts, ends, id)
 
     return redirect("/all_lessons")
 
@@ -173,18 +174,18 @@ def my_lessons(id):
     else:
         abort(403)
 
-@app.route("/send_feedback", methods=["GET", "POST"])
-def send_feedback():
+@app.route("/feedback", methods=["GET", "POST"])
+def feedback():
     if request.method == "GET":
-        return render_template("/send_feedback.html")
+        return render_template("/feedback.html")
     if request.method == "POST":
         try:
             message = request.form["message"]
             user_id = session["user_id"]
-            feedback.send_feedback(message, user_id)
+            messages.feedback(user_id, message)
         except:
             message = request.form["message"]
-            user_id = 0
-            feedback.send_feedback(message, user_id)
+            email = request.form["email"]
+            messages.feedback(email, message)
 
     return redirect("/")

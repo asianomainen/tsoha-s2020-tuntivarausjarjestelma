@@ -3,18 +3,19 @@ from db import db
 
 def get_lessons():
     global all_lessons
-    sql = "SELECT L.id, L.name, L.date, L.start, L.duration, L.spots-COUNT(S.id) " \
-          "FROM lessons L LEFT JOIN sign_ups S ON L.id=S.lesson_id GROUP BY L.id ORDER BY L.date"
+    sql = "SELECT L.id, L.name, L.date, L.starts, L.ends, L.spots-COUNT(S.id) " \
+          "FROM lessons L LEFT JOIN sign_ups S ON L.id=S.lesson_id " \
+          "WHERE (L.date + L.starts) > CURRENT_TIMESTAMP GROUP BY L.id ORDER BY L.date"
     result = db.session.execute(sql)
     all_lessons = result.fetchall()
 
     return all_lessons
 
-def new_lesson(name, spots, date, start, duration):
-    sql = "INSERT INTO lessons (name, spots, date, start, duration)" \
-    "VALUES (:name, :spots, :date, :start, :duration)"
+def new_lesson(name, spots, date, starts, ends):
+    sql = "INSERT INTO lessons (name, spots, date, starts, ends)" \
+    "VALUES (:name, :spots, :date, :starts, :ends)"
     db.session.execute(sql, {"name":name, "spots":spots, "date":date,
-                             "start":start, "duration":duration})
+                             "starts":starts, "ends":ends})
     db.session.commit()
 
 def sign_up(user_id, lesson_id):
@@ -72,15 +73,15 @@ def total_participants(lesson_id):
     return participants
 
 def lesson_information(lesson_id):
-    sql = "SELECT name, spots, date, start, duration FROM lessons WHERE id=:lesson_id"
+    sql = "SELECT name, spots, date, starts, ends FROM lessons WHERE id=:lesson_id"
     result = db.session.execute(sql, {"lesson_id":lesson_id})
     return result.fetchone()
 
-def lesson_update(name, spots, date, start, duration, lesson_id):
+def lesson_update(name, spots, date, starts, ends, lesson_id):
     sql = "UPDATE lessons SET name=:name, spots=:spots, " \
-          "date=:date, start=:start, duration=:duration WHERE id=:lesson_id"
-    db.session.execute(sql, {"name":name, "spots":spots, "date":date, "start":start,
-                             "duration":duration, "lesson_id":lesson_id})
+          "date=:date, starts=:starts, ends=:ends WHERE id=:lesson_id"
+    db.session.execute(sql, {"name":name, "spots":spots, "date":date, "starts":starts,
+                             "ends":ends, "lesson_id":lesson_id})
     db.session.commit()
 
     flash("Tiedot päivitetty.")
@@ -109,7 +110,7 @@ def remove_participant(user_id, lesson_id):
     flash("Käyttäjä poistettu tunnilta.")
 
 def get_user_lessons(user_id):
-    sql = "SELECT L.id, L.name, L.date, L.start, L.duration FROM " \
+    sql = "SELECT L.id, L.name, L.date, L.starts, L.ends FROM " \
     "lessons L LEFT JOIN sign_ups S ON L.id=S.lesson_id  WHERE S.user_id=:user_id"
     result = db.session.execute(sql, {"user_id":user_id})
     all_user_lessons = result.fetchall()

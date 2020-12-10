@@ -6,7 +6,7 @@
     table {
     font-family: arial, sans-serif;
     border-collapse: collapse;
-    width: 75%;
+    width: 50%;
     }
     td, th {
     border: 1px solid #dddddd;
@@ -23,16 +23,14 @@
     <th>Nimi</th>
     <th>Päivä</th>
     <th>Aika</th>
-    <th>Kesto (min)</th>
     <th></th>
 </tr>
 
 {% for lesson in lessons %}
 <tr>
     <td>{{ lesson[1] }}</td>
-    <td>{{ lesson[2] }}</td>
-    <td>{{ lesson[3] }}</td>
-    <td>{{ lesson[4] }}</td>
+    <td>{{ lesson[2].strftime('%d.%m.%Y') }}</td>
+    <td>{{ lesson[3].strftime('%H:%M') }} - {{ lesson[4].strftime('%H:%M') }}</td>
     <td>
         {% if session.user_id %}
 
@@ -54,7 +52,7 @@
         {% else %}
         <form action="/sign_up" method="POST">
             <input type="hidden" id="id" name="id" value="{{ lesson[0] }}">
-            <input type="submit" value="Ilmoittaudu"><br>
+            <input type="submit" value="Varaa"><br>
         </form>
         {% endif %}
 

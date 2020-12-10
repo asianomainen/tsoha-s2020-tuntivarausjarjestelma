@@ -11,9 +11,7 @@ Paikkoja:
 Päivä:
 <input type="date" name="date" value="{{ lesson_information[2] }}" required><br /><br />
 Aika:
-<input type="time" name="start" value="{{ lesson_information[3] }}" required><br /><br />
-Kesto (min):
-<input type="text" name="duration" value="{{ lesson_information[4] }}" required><br /><br />
+<input type="time" name="starts" value="{{ lesson_information[3] }}" required> - <input type="time" name="ends" value="{{ lesson_information[4] }}" required><br /><br />
 <input type="submit" value="Tallenna muutokset">
 </form><br>
 <form action="/remove_lesson/{{ id }}">
