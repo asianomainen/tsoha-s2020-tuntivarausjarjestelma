@@ -13,16 +13,18 @@ Sovellus kehitetään liikuntatuntien varaamiseen. Käyttäjä voi luoda käytt�
      - [x] Käyttäjätunnus
      - [x] Sähköpostiosoite
      - [x] Puhelinnumero
-   - [x] Käyttäjä voi päivittää tietojaan
-   - [x] Käyttäjä voi poistaa tilinsä
-   - [x] Käyttäjä voi olla ylläpitäjä, joka voi
-     - [x] lisätä liikuntatunteja
-     - [x] muokata liikuntatunteja
-     - [x] poistaa liikuntatunteja
-     - [x] poistaa liikuntatuntien osallistujia
-     - [x] selata käyttäjien tietoja
-     - [x] muokata käyttäjien tietoja
-     - [x] poistaa käyttäjiä
+   - [x] Käyttäjä voi:
+      - [x] Päivittää tietojaan
+      - [x] Poistaa tilinsä
+      - [x] Lähettää ylläpidolle palautetta
+      - [x] <b>Käyttäjä voi olla ylläpitäjä, joka voi:</b>
+        - [x] lisätä liikuntatunteja
+        - [x] muokata liikuntatunteja
+        - [x] poistaa liikuntatunteja
+        - [x] poistaa liikuntatuntien osallistujia
+        - [x] selata käyttäjien tietoja
+        - [x] muokata käyttäjien tietoja
+        - [x] poistaa käyttäjiä
 
 2. Ilmoittautumisjärjestelmä
    - [x] Käyttäjä näkee tulevat liikuntatunnit etusivulla listattuna 
