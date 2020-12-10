@@ -1,0 +1,18 @@
+<!doctype html>
+{% extends "layout.html" %}
+
+{% block content %}
+<form action="/feedback" method="POST">
+{% if not session.user_id %}
+<p>
+    Sähköpostiosoite (ei pakollinen): <br>
+    <textarea name="email" rows="1" cols="50"></textarea>
+</p>
+{% endif %}
+<p>
+    Palaute: <br>
+    <textarea name="message" rows="3" cols="50"></textarea>
+</p>
+<input type="submit" value="Lähetä">
+</form>
+{% endblock %}
