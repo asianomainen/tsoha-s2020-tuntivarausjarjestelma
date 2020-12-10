@@ -40,10 +40,18 @@ def sign_up(user_id, lesson_id):
 
 def undo_sign_up(user_id, lesson_id):
     if lesson_contains_user(user_id, lesson_id) == True:
-        sql = "DELETE FROM sign_ups WHERE lesson_id=:lesson_id AND user_id=:user_id"
-        db.session.execute(sql, {"lesson_id":lesson_id, "user_id":user_id})
-        db.session.commit()
-        flash("Ilmoittautuminen peruttu.")
+        sql = "SELECT id FROM lessons WHERE (date + starts) > CURRENT_TIMESTAMP + interval '12 hour' AND id=:lesson_id"
+        result = db.session.execute(sql, {"lesson_id":lesson_id})
+        try:
+            lesson = result.fetchone()[0]
+
+            if lesson == lesson_id:
+                sql = "DELETE FROM sign_ups WHERE lesson_id=:lesson_id AND user_id=:user_id"
+                db.session.execute(sql, {"lesson_id":lesson_id, "user_id":user_id})
+                db.session.commit()
+                flash("Ilmoittautuminen peruttu.")
+        except:
+            flash("Tunnin alkuun on alle 12h. Et voi valitettavasti enää perua osallistumista.")
     else:
         flash("Et ole ilmoittautunut tälle tunnille.")
 
