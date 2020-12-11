@@ -48,7 +48,7 @@ Sovellus kehitetään liikuntatuntien varaamiseen. Käyttäjä voi luoda käytt�
 
 Linkki sovellukseen: https://movemint.herokuapp.com/
 
-Sovellusta voi testata yllä mainittujen ominaisuuksien puitteissa. Testaaja voi halutessaan luoda uuden tunnuksen testaamista varten, koska tällä hetkellä sovelluksessa kaikki toiminnot ovat tavallisen käyttäjän suoritettavissa.<br>
+Sovellusta voi testata yllä mainittujen ominaisuuksien puitteissa. Testaaja voi halutessaan luoda uuden tunnuksen testaamista varten tai käyttää alla olevia tunnuksia.<br>
 
 <b>Testaamista varten on luotu sekä testikäyttäjä että ylläpitäjä:</b> 
 <hr>
