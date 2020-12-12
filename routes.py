@@ -48,13 +48,13 @@ def register():
 
 @app.route("/new_lesson", methods=["GET", "POST"])
 def new_lesson():
-    if session["csrf_token"] != request.form["csrf_token"]:
-        abort(403)
     user_id = session["user_id"]
     if users.is_admin(user_id):
         if request.method == "GET":
             return render_template("new_lesson.html")
         if request.method == "POST":
+            if session["csrf_token"] != request.form["csrf_token"]:
+                abort(403)
             name = request.form["name"]
             spots = request.form["spots"]
             date = request.form["date"]
@@ -186,18 +186,18 @@ def my_lessons(id):
 
 @app.route("/feedback", methods=["GET", "POST"])
 def feedback():
-    if session["csrf_token"] != request.form["csrf_token"]:
-        abort(403)
     if request.method == "GET":
         return render_template("/feedback.html")
     if request.method == "POST":
         try:
+            if session["csrf_token"] != request.form["csrf_token"]:
+                abort(403)
             message = request.form["message"]
             user_id = session["user_id"]
             messages.feedback(user_id, message)
         except:
             message = request.form["message"]
             email = request.form["email"]
-            messages.feedback(email, message)
+            messages.anonymous_feedback(email, message)
 
     return redirect("/")
