@@ -17,6 +17,8 @@
 <p>Aika:<br>
 <input type="time" name="starts" required> - <input type="time" name="ends" required></p>
 
+<input type="hidden" name="csrf_token" value="{{ session.csrf_token }}">
+
 <input type="submit" value="Luo uusi tunti">
 
 </form>

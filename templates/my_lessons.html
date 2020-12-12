@@ -35,6 +35,7 @@
     <td>
         <form action="/undo_sign_up" method="POST">
             <input type="hidden" id="id" name="id" value="{{ lesson[0] }}">
+            <input type="hidden" name="csrf_token" value="{{ session.csrf_token }}">
             <input type="submit" value="Peru"><br>
         </form>
     </td>

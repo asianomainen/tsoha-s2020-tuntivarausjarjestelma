@@ -1,6 +1,7 @@
 from flask import session, flash
 from werkzeug.security import check_password_hash
 from db import db
+import os
 
 def login(username, password):
     sql = "SELECT password, id FROM users WHERE username=:username"
@@ -15,6 +16,8 @@ def login(username, password):
             session["user_id"] = user[1]
             session["username"] = username
             session["admin"] = False
+            session["csrf_token"] = os.urandom(16).hex()
+
             if is_admin(user[1]):
                 session["admin"] = True
             return True

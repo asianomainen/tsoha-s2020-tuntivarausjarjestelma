@@ -40,7 +40,8 @@ def sign_up(user_id, lesson_id):
 
 def undo_sign_up(user_id, lesson_id):
     if lesson_contains_user(user_id, lesson_id) == True:
-        sql = "SELECT id FROM lessons WHERE (date + starts) > CURRENT_TIMESTAMP + interval '12 hour' AND id=:lesson_id"
+        sql = "SELECT id FROM lessons WHERE " \
+              "(date + starts) > CURRENT_TIMESTAMP + interval '12 hour' AND id=:lesson_id"
         result = db.session.execute(sql, {"lesson_id":lesson_id})
         try:
             lesson = result.fetchone()[0]

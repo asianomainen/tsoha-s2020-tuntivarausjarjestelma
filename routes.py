@@ -48,6 +48,8 @@ def register():
 
 @app.route("/new_lesson", methods=["GET", "POST"])
 def new_lesson():
+    if session["csrf_token"] != request.form["csrf_token"]:
+        abort(403)
     user_id = session["user_id"]
     if users.is_admin(user_id):
         if request.method == "GET":
@@ -67,6 +69,8 @@ def new_lesson():
 
 @app.route("/sign_up", methods=["POST"])
 def sign_up():
+    if session["csrf_token"] != request.form["csrf_token"]:
+        abort(403)
     user_id = session["user_id"]
     lesson_id = request.form["id"]
 
@@ -76,6 +80,8 @@ def sign_up():
 
 @app.route("/undo_sign_up", methods=["POST"])
 def undo_sign_up():
+    if session["csrf_token"] != request.form["csrf_token"]:
+        abort(403)
     user_id = session["user_id"]
     lesson_id = request.form["id"]
 
@@ -92,6 +98,8 @@ def account(id):
 
 @app.route("/account_update/<int:id>", methods=["POST"])
 def account_update(id):
+    if session["csrf_token"] != request.form["csrf_token"]:
+        abort(403)
     first_name = request.form["first_name"]
     last_name = request.form["last_name"]
     email = request.form["email"]
@@ -145,6 +153,8 @@ def lesson(id):
 
 @app.route("/lesson_update/<int:id>", methods=["POST"])
 def lesson_update(id):
+    if session["csrf_token"] != request.form["csrf_token"]:
+        abort(403)
     name = request.form["name"]
     spots = request.form["spots"]
     date = request.form["date"]
@@ -176,6 +186,8 @@ def my_lessons(id):
 
 @app.route("/feedback", methods=["GET", "POST"])
 def feedback():
+    if session["csrf_token"] != request.form["csrf_token"]:
+        abort(403)
     if request.method == "GET":
         return render_template("/feedback.html")
     if request.method == "POST":
