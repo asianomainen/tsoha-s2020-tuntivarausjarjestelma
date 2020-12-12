@@ -1,4 +1,5 @@
 from flask import session, flash
+from flask.templating import render_template
 from werkzeug.security import check_password_hash
 from db import db
 import os
@@ -46,11 +47,10 @@ def register(username, hash_value, first_name, last_name, email, phone):
         db.session.commit()
     else:
         flash("Käyttäjänimi varattu. Valitse toinen käyttäjänimi.")
-        username = " "
-        return login(username, hash_value)
+        return render_template("/register.html")
 
     flash("Käyttäjätunnus luotu. Voit nyt kirjautua sisään.")
-    return login(username, hash_value)
+    return
 
 def account_information(user_id):
     sql = "SELECT first_name, last_name, email, phone FROM users WHERE id=:user_id"
@@ -102,7 +102,12 @@ def get_user_id(username):
 
     return user_id
 
-def remove_sign_ups(user_id):
-    sql = "DELETE FROM sign_ups WHERE user_id=:user_id"
-    db.session.execute(sql, {"user_id":user_id})
-    db.session.commit()
+# def check_username_exists(username):
+#     sql = "SELECT * FROM users WHERE username=:username"
+#     result = db.session.execute(sql, {"username":username})
+#     try:
+#         result.fetchone()[0]
+#         flash("Käyttäjänimi varattu")
+#         return True
+#     except:
+#         return False

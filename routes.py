@@ -37,7 +37,7 @@ def register():
         return render_template("register.html")
     if request.method == "POST":
         username = request.form["username"]
-        password = request.form["password"]
+        password = request.form["up"]
         hash_value = generate_password_hash(password)
         first_name = request.form["first_name"]
         last_name = request.form["last_name"]
@@ -83,7 +83,7 @@ def undo_sign_up():
     if session["csrf_token"] != request.form["csrf_token"]:
         abort(403)
     user_id = session["user_id"]
-    lesson_id = request.form["id"]
+    lesson_id = request.form["lesson_id"]
 
     lessons.undo_sign_up(user_id, lesson_id)
 
@@ -109,11 +109,24 @@ def account_update(id):
 
     return redirect(f"/account/{id}")
 
+@app.route("/change_password/<int:id>", methods=["POST"])
+def change_password(id):
+    if session["csrf_token"] != request.form["csrf_token"]:
+        abort(403)
+    first_name = request.form["first_name"]
+    last_name = request.form["last_name"]
+    email = request.form["email"]
+    phone = request.form["phone"]
+
+    users.account_update(first_name, last_name, email, phone, id)
+
+    return redirect(f"/account/{id}")
+
 @app.route("/remove_account/<int:id>")
 def remove_account(id):
     user_id = session["user_id"]
     if user_id == id or session["admin"] == True:
-        users.remove_sign_ups(id)
+        lessons.remove_sign_ups(id)
         users.remove_account(id)
         if session["admin"] == True:
             return redirect("/all_users")
