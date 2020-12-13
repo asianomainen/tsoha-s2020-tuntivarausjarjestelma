@@ -1,21 +1,28 @@
 <!doctype html>
 <html lang="en">
 {% extends "layout.html" %}
-{% if session.user_id %}
-
-{% else %}
 {% block content %}
+
 <body>
-    <div class="container index">
+    <div class="container index" style="height: 700px">
         <div class="card border-0 shadow my-5">
             <div class="card-body p-5">
-                <h1>Tervetuloa Movemintin tuntivarausjärjestelmään!</h1>
-                <div style="height: 700px">
-                </div>
+                <h1>Tervetuloa Movemintin tuntivarausjärjestelmään!</h1><br>
+                <p>Movemint tarjoaa ryhmäliikuntatunteja kaiken ikäisille ja kuntoisille Järvenpäässä sekä Sipoossa.</p>
+                <p>Mukaan pääset ilmoittautumalla etukäteen varausjärjestelmän kautta.</p>
+                <h3>Tervetuloa nauttimaan tunneista!</h3>
+                {% if session.user_id %}
+                <button class="btn btn-primary">
+                    <a href="/user_all_lessons" class="text-white">Varaa tunteja</a>
+                </button>
+                {% else %}
+                <button class="btn btn-primary">
+                    <a href="/login" class="text-white">Kirjaudu sisään ja varaa tunteja</a>
+                </button>
+                {% endif %}
             </div>
         </div>
     </div>
 </body>
 {% endblock %}
-{% endif %}
 </html>
