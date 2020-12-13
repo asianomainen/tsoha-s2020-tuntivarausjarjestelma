@@ -72,7 +72,7 @@ def account_update(first_name, last_name, email, phone, user_id):
 
 # Function fo remove account 
 def remove_account(user_id):
-    if user_id == 5:
+    if user_id == 3:
         flash("Testikäyttäjää ei voi poistaa.")
         return
     sql = "DELETE FROM users WHERE id=:user_id"
