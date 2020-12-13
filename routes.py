@@ -7,14 +7,7 @@ import lessons
 
 @app.route("/")
 def index():
-    try:
-        user_id = session["user_id"]
-        all_lessons = lessons.get_lessons()
-        user_lessons = lessons.get_user_lessons(user_id)
-        return render_template("/index.html", lessons=all_lessons, user_lessons=user_lessons)
-    except:
-        all_lessons = lessons.get_lessons()
-        return render_template("/index.html", lessons=all_lessons)
+    return render_template("/index.html")
 
 @app.route("/login", methods=["GET", "POST"])
 def login():
@@ -146,7 +139,7 @@ def all_users():
     else:
         abort(403)
 
-@app.route("/all_lessons")
+@app.route("/admin_all_lessons")
 def all_lessons():
     user_id = session["user_id"]
     if users.is_admin(user_id):
@@ -154,6 +147,17 @@ def all_lessons():
         return render_template("/all_lessons.html", lessons=all_lessons)
     else:
         abort(403)
+
+@app.route("/user_all_lessons")
+def al_lessons():
+    try:
+        user_id = session["user_id"]
+        all_lessons = lessons.get_lessons()
+        user_lessons = lessons.get_user_lessons(user_id)
+        return render_template("/lessons.html", lessons=all_lessons, user_lessons=user_lessons)
+    except:
+        all_lessons = lessons.get_lessons()
+        return render_template("/lessons.html", lessons=all_lessons)
 
 @app.route("/lesson/<int:id>")
 def lesson(id):

@@ -2,24 +2,26 @@
 <html lang="en">
 {% extends "layout.html" %}
 {% block content %}
-<div class="container">
-    <div class="card border-0 shadow my-5">
-        <div class="card-body p-5">
-            <h2>Kirjaudu</h2>
-            <div style="height: 700px">
-                <form action="/login" method="POST">
-                    <p>Käyttäjätunnus:<br>
-                    <input type="text" name="username"></p>
-                    <p>Salasana:<br>
-                    <input type="password" name="password"></p>
-                    <input type="submit" value="Kirjaudu">
-                </form>
-                <form action="/register">
-                    <input type="submit" value="Luo uusi tunnus">
-                </form>
+<body>
+    <div class="container-fluid" style="height: 700px">
+        <div class="card border-0 shadow my-5">
+            <div class="card-body p-5">
+                <h2>Kirjaudu</h2>
+                    <form action="/login" method="POST">
+                        <p>Käyttäjätunnus:<br>
+                        <input type="text" name="username"></p>
+                        <p>Salasana:<br>
+                        <input type="password" name="password"></p>
+                        <button type="submit" class="btn btn-primary">Kirjaudu</button>
+                    </form>
+                    <br>
+                    <form action="/register">
+                        <input type="submit" value="Luo uusi tunnus">
+                    </form>
+                </div>
             </div>
         </div>
     </div>
-</div>
+</body>
 {% endblock %}
 </html>

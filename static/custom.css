@@ -9,9 +9,9 @@ body {
     background-repeat: no-repeat;
     margin-right: auto;
     margin-left: auto;
-    max-width: 2000px;
-    max-height: 1365px;
-    background-image: url("movemint_background.jpg");
+    width: 2000px;
+    height: 1365px;
+    background-image: url("/static/movemint_background.jpg");
     background-position: center center;
     background-repeat: no-repeat;
     background-attachment: fixed;
@@ -21,7 +21,7 @@ body {
 table {
     font-family: arial, sans-serif;
     border-collapse: collapse;
-    width: 50%;
+    width: 100%;
 }
 
 td, th {
@@ -36,4 +36,8 @@ tr:nth-child(even) {
 
 div {
     overflow-x: auto;
+}
+
+.index {
+    text-align: center;
 }

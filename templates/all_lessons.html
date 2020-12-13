@@ -2,34 +2,36 @@
 <html lang="en">
 {% extends "layout.html" %}
 {% block content %}
-<div class="container">
-    <div class="card border-0 shadow my-5">
-        <div class="card-body p-5">
-            <h2>Kaikki tunnit</h2>
-            <div style="height: 700px">
-                <table class="table table-hover table-fixed" id="all_lessons">
-                    <tr>
-                        <th>Nimi</th>
-                        <th>Paikkoja jäljellä</th>
-                        <th>Päivä</th>
-                        <th>Aika</th>
-                        <th></th>
-                    </tr>
-                    <tr>
-                        {% for lesson in lessons %}
-                        <td>{{ lesson[1] }}</td>
-                        <td>{{ lesson[5] }}</td>
-                        <td>{{ lesson[2].strftime('%d.%m.%Y') }}</td>
-                        <td>{{ lesson[3].strftime('%H:%M') }} - {{ lesson[4].strftime('%H:%M') }}</td>
-                        <td>
-                          <a href="/lesson/{{ lesson[0] }}">Muokkaa</a>
-                        </td>
-                    </tr>
-                    {% endfor%}
-                </table>
+<body>
+    <div class="container">
+        <div class="card border-0 shadow my-5">
+            <div class="card-body p-5">
+                <h2>Kaikki tunnit</h2>
+                <div style="height: 700px">
+                    <table class="table table-hover table-fixed" id="all_lessons">
+                        <tr>
+                            <th>Nimi</th>
+                            <th>Paikkoja jäljellä</th>
+                            <th>Päivä</th>
+                            <th>Aika</th>
+                            <th></th>
+                        </tr>
+                        <tr>
+                            {% for lesson in lessons %}
+                            <td>{{ lesson[1] }}</td>
+                            <td>{{ lesson[5] }}</td>
+                            <td>{{ lesson[2].strftime('%d.%m.%Y') }}</td>
+                            <td>{{ lesson[3].strftime('%H:%M') }} - {{ lesson[4].strftime('%H:%M') }}</td>
+                            <td>
+                              <a href="/lesson/{{ lesson[0] }}">Muokkaa</a>
+                            </td>
+                        </tr>
+                        {% endfor%}
+                    </table>
+                </div>
             </div>
         </div>
     </div>
-</div>
+</body>
 {% endblock %}
 </html>
