@@ -220,3 +220,16 @@ def feedback():
             messages.anonymous_feedback(email, message)
 
     return redirect("/")
+
+@app.route("/all_feedback", methods=["GET"])
+def all_feedback():
+    all_messages = messages.get_messages()
+    user_id = session["user_id"]
+    if users.is_admin(user_id):
+        return render_template("/all_feedback.html", messages=all_messages)
+    else:
+        abort(403)
+
+@app.route("/GDPR")
+def GDPR():
+    return render_template("/GDPR.html")

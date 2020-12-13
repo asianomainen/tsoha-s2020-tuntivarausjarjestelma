@@ -13,26 +13,29 @@
                       oninput='up2.setCustomValidity(up2.value != up.value ? "Salasanat eivät täsmää." : "")'>
                     <p>
                     <label for="first_name">Etunimi:</label><br>
-                    <input type="text" name="first_name" required>
+                    <input type="text" name="first_name" required title="Täytä puuttuva tieto">
                     <p>
                     <label for="last_name">Sukunimi:</label><br>
-                    <input type="text" name="last_name" required>
+                    <input type="text" name="last_name" required title="Täytä puuttuva tieto">
                     <p>
                     <label for="phone">Puhelinnumero:</label><br>
-                    <input type="tel" name="phone" placeholder="0401234567" required>
+                    <input type="tel" name="phone" placeholder="0401234567" required title="Täytä puuttuva tieto">
                     <p>
                     <label for="username">Käyttäjätunnus:</label><br>
-                    <input type="text" name="username" minlength="6" required></p>
+                    <input type="text" name="username" minlength="6" required title="Käyttäjätunnuksen tulee olla vähintään 6 merkkiä pitkä."></p>
                     <p>
                     <label for="email">Sähköposti:</label><br>
-                    <input type="text" name="email" required></p>
+                    <input type="text" name="email" required title="Täytä puuttuva tieto"></p>
                     <p>
                     <label for="password1">Salasana:</label><br>
-                    <input id="password1" type=password required name=up>
+                    <input id="password1" type=password required title="Täytä puuttuva tieto" name=up>
                     <p>
                     <label for="password2">Vahvista salasana:</label><br>
                     <input id="password2" type=password name=up2>
                     <p>
+                    <p>
+                    <input type="checkbox" name="GDPR" value="1" required title="Lue ja hyväksy tietosuojaseloste"> Olen lukenut ja hyväksyn <a href="/GDPR" target="_blank"> tietosuojaselosteen</a>
+                    </p>
                     <input type="submit" value="Luo uusi tunnus">
                 </form>
             </div>
