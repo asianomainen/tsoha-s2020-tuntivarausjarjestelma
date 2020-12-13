@@ -5,10 +5,12 @@ import messages
 import users
 import lessons
 
+# Renders the home page
 @app.route("/")
 def index():
     return render_template("/index.html")
 
+# User login
 @app.route("/login", methods=["GET", "POST"])
 def login():
     if request.method == "GET":
@@ -21,11 +23,13 @@ def login():
         else:
             return render_template("/login.html")
 
+# User logout
 @app.route("/logout")
 def logout():
     users.logout()
     return redirect("/")
 
+# New user registration
 @app.route("/register", methods=["GET", "POST"])
 def register():
     if request.method == "GET":
@@ -41,6 +45,7 @@ def register():
         users.register(username, hash_value, first_name, last_name, email, phone)
         return redirect("/")
 
+# Function to make a new lesson
 @app.route("/new_lesson", methods=["GET", "POST"])
 def new_lesson():
     user_id = session["user_id"]
@@ -62,6 +67,7 @@ def new_lesson():
     else:
         abort(403)
 
+# Function for a user to sign up to a lesson
 @app.route("/sign_up", methods=["POST"])
 def sign_up():
     if session["csrf_token"] != request.form["csrf_token"]:
@@ -73,6 +79,7 @@ def sign_up():
 
     return redirect("/user_all_lessons")
 
+# Function for a user to undo a sign up to a lesson
 @app.route("/undo_sign_up", methods=["POST"])
 def undo_sign_up():
     if session["csrf_token"] != request.form["csrf_token"]:
@@ -84,6 +91,7 @@ def undo_sign_up():
 
     return redirect("/user_all_lessons")
 
+# Users account information
 @app.route("/account/<int:id>")
 def account(id):
     user_id = session["user_id"]
@@ -91,6 +99,7 @@ def account(id):
         user_information = users.account_information(id)
         return render_template("/account.html", id=id, user_information=user_information)
 
+# Users account information update
 @app.route("/account_update/<int:id>", methods=["POST"])
 def account_update(id):
     if session["csrf_token"] != request.form["csrf_token"]:
@@ -104,19 +113,20 @@ def account_update(id):
 
     return redirect(f"/account/{id}")
 
-@app.route("/change_password/<int:id>", methods=["POST"])
-def change_password(id):
-    if session["csrf_token"] != request.form["csrf_token"]:
-        abort(403)
-    first_name = request.form["first_name"]
-    last_name = request.form["last_name"]
-    email = request.form["email"]
-    phone = request.form["phone"]
+# @app.route("/change_password/<int:id>", methods=["POST"])
+# def change_password(id):
+#     if session["csrf_token"] != request.form["csrf_token"]:
+#         abort(403)
+#     first_name = request.form["first_name"]
+#     last_name = request.form["last_name"]
+#     email = request.form["email"]
+#     phone = request.form["phone"]
 
-    users.account_update(first_name, last_name, email, phone, id)
+#     users.account_update(first_name, last_name, email, phone, id)
 
-    return redirect(f"/account/{id}")
+#     return redirect(f"/account/{id}")
 
+# Deletes user account permanently, all data is removed from the database
 @app.route("/remove_account/<int:id>")
 def remove_account(id):
     user_id = session["user_id"]
@@ -130,6 +140,7 @@ def remove_account(id):
     users.logout()
     return redirect("/")
 
+# Returns all user information for the admin
 @app.route("/all_users")
 def all_users():
     user_id = session["user_id"]
@@ -139,6 +150,7 @@ def all_users():
     else:
         abort(403)
 
+# Returns all lesson information for the admin
 @app.route("/admin_all_lessons")
 def admin_all_lessons():
     user_id = session["user_id"]
@@ -148,6 +160,7 @@ def admin_all_lessons():
     else:
         abort(403)
 
+# Returns all lesson information for users
 @app.route("/user_all_lessons")
 def user_all_lessons():
     try:
@@ -159,6 +172,7 @@ def user_all_lessons():
         all_lessons = lessons.get_lessons()
         return render_template("/lessons.html", lessons=all_lessons)
 
+# Returns a single lessons information for the admin
 @app.route("/lesson/<int:id>")
 def lesson(id):
     user_id = session["user_id"]
@@ -170,6 +184,7 @@ def lesson(id):
     else:
         abort(403)
 
+# Admin can update lesson information
 @app.route("/lesson_update/<int:id>", methods=["POST"])
 def lesson_update(id):
     if session["csrf_token"] != request.form["csrf_token"]:
@@ -184,16 +199,19 @@ def lesson_update(id):
 
     return redirect("/admin_all_lessons")
 
+# Admin can remove lessons
 @app.route("/remove_lesson/<int:id>")
 def remove_lesson(id):
     lessons.remove_lesson(id)
     return redirect("/admin_all_lessons")
 
+# Admin can remove participants from lessons
 @app.route("/remove_participant/<int:user_id>/<int:lesson_id>")
 def remove_participant(user_id, lesson_id):
     lessons.remove_participant(user_id, lesson_id)
     return redirect(f"/lesson/{lesson_id}")
 
+# User can see all lessons they are signed up to
 @app.route("/my_lessons/<int:id>")
 def my_lessons(id):
     user_id = session["user_id"]
@@ -203,6 +221,7 @@ def my_lessons(id):
     else:
         abort(403)
 
+# Function to send feedback to database
 @app.route("/feedback", methods=["GET", "POST"])
 def feedback():
     if request.method == "GET":
@@ -221,6 +240,7 @@ def feedback():
 
     return redirect("/")
 
+# Admin can view all feedback
 @app.route("/all_feedback", methods=["GET"])
 def all_feedback():
     all_messages = messages.get_messages()
@@ -230,6 +250,7 @@ def all_feedback():
     else:
         abort(403)
 
+# Opens the GDPR form
 @app.route("/GDPR")
 def GDPR():
     return render_template("/GDPR.html")

@@ -1,6 +1,7 @@
 from flask import flash
 from db import db
 
+# Returns all lessons
 def get_lessons():
     global all_lessons
     sql = "SELECT L.id, L.name, L.date, L.starts, L.ends, L.spots-COUNT(S.id) " \
@@ -11,6 +12,7 @@ def get_lessons():
 
     return all_lessons
 
+# Creates a new lesson
 def new_lesson(name, spots, date, starts, ends):
     sql = "INSERT INTO lessons (name, spots, date, starts, ends)" \
     "VALUES (:name, :spots, :date, :starts, :ends)"
@@ -18,6 +20,7 @@ def new_lesson(name, spots, date, starts, ends):
                              "starts":starts, "ends":ends})
     db.session.commit()
 
+# User lesson sign up function
 def sign_up(user_id, lesson_id):
     if lesson_contains_user(user_id, lesson_id) == True:
         flash("Olet jo ilmoittautunut tälle tunnille.")
@@ -37,7 +40,7 @@ def sign_up(user_id, lesson_id):
 
             flash("Ilmoittautuminen varasijalle onnistui.")
 
-
+# User lesson sign up undo function
 def undo_sign_up(user_id, lesson_id):
     if lesson_contains_user(user_id, lesson_id) == True:
         sql = "SELECT * FROM lessons WHERE " \
@@ -55,6 +58,7 @@ def undo_sign_up(user_id, lesson_id):
     else:
         flash("Et ole ilmoittautunut tälle tunnille.")
 
+# Checks if user is signed up to a lesson
 def lesson_contains_user(user_id, lesson_id):
     sql = "SELECT id FROM sign_ups WHERE user_id=:user_id AND lesson_id=:lesson_id"
     result = db.session.execute(sql, {"user_id":user_id, "lesson_id":lesson_id})
@@ -62,10 +66,8 @@ def lesson_contains_user(user_id, lesson_id):
     if sign_up_id is None:
         return False
     return True
-
-def reserve(lesson_id):
-    return spots(lesson_id) <= total_participants(lesson_id)
-
+ 
+ # Returns the amount of spots in a lesson
 def spots(lesson_id):
     sql = "SELECT spots FROM lessons WHERE id=:lesson_id"
     result = db.session.execute(sql, {"lesson_id":lesson_id})
@@ -73,6 +75,7 @@ def spots(lesson_id):
 
     return spots
 
+ # Returns the amount of participants in a lesson
 def total_participants(lesson_id):
     sql = "SELECT COUNT(id) FROM sign_ups WHERE lesson_id=:lesson_id"
     result = db.session.execute(sql, {"lesson_id":lesson_id})
@@ -80,11 +83,13 @@ def total_participants(lesson_id):
 
     return participants
 
+ # Returns all lesson information
 def lesson_information(lesson_id):
     sql = "SELECT name, spots, date, starts, ends FROM lessons WHERE id=:lesson_id"
     result = db.session.execute(sql, {"lesson_id":lesson_id})
     return result.fetchone()
 
+# Updates lesson information
 def lesson_update(name, spots, date, starts, ends, lesson_id):
     sql = "UPDATE lessons SET name=:name, spots=:spots, " \
           "date=:date, starts=:starts, ends=:ends WHERE id=:lesson_id"
@@ -94,6 +99,7 @@ def lesson_update(name, spots, date, starts, ends, lesson_id):
 
     flash("Tiedot päivitetty.")
 
+# Removes lesson completely
 def remove_lesson(lesson_id):
     sql = "DELETE FROM lessons WHERE id=:lesson_id"
     db.session.execute(sql, {"lesson_id":lesson_id})
@@ -101,6 +107,7 @@ def remove_lesson(lesson_id):
 
     flash("Tunti poistettu.")
 
+# Returns all participants in a lesson
 def get_participants(lesson_id):
     sql = "SELECT A.id, username, first_name, last_name, email, phone " \
           "FROM users A LEFT JOIN sign_ups B ON A.id=B.user_id WHERE B.lesson_id=:lesson_id"
@@ -110,6 +117,7 @@ def get_participants(lesson_id):
 
     return participants
 
+# Removes a participant from a lesson
 def remove_participant(user_id, lesson_id):
     sql = "DELETE FROM sign_ups WHERE user_id=:user_id AND lesson_id=:lesson_id"
     db.session.execute(sql, {"user_id":user_id, "lesson_id":lesson_id})
@@ -117,6 +125,7 @@ def remove_participant(user_id, lesson_id):
 
     flash("Käyttäjä poistettu tunnilta.")
 
+# Returns all lessons a user is signed up to
 def get_user_lessons(user_id):
     sql = "SELECT L.id, L.name, L.date, L.starts, L.ends FROM " \
     "lessons L LEFT JOIN sign_ups S ON L.id=S.lesson_id  WHERE S.user_id=:user_id"
@@ -125,8 +134,8 @@ def get_user_lessons(user_id):
  
     return all_user_lessons
 
+# Removes all sign ups made by a certain user
 def remove_sign_ups(user_id):
     sql = "DELETE FROM sign_ups WHERE user_id=:user_id"
     db.session.execute(sql, {"user_id":user_id})
     db.session.commit()
-
