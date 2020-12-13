@@ -1,0 +1,31 @@
+<!doctype html>
+<html lang="en">
+{% extends "layout.html" %}
+{% block content %}
+<body>
+    <div class="container">
+        <div class="card border-0 shadow my-5">
+            <div class="card-body p-5">
+                <h2>Kaikki palautteet</h2>
+                <div style="height: 700px">
+                    <table class="table table-hover table-fixed" id="all_lessons">
+                        <tr>
+                            <th>Käyttäjnimi</th>
+                            <th>Sähköposti</th>
+                            <th>Palaute</th>
+                        </tr>
+                        <tr>
+                            {% for message in messages %}
+                            <td>{{ message[0] }}</td>
+                            <td>{{ message[2] }}</td>
+                            <td>{{ message[1] }}</td>
+                        </tr>
+                        {% endfor%}
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+{% endblock %}
+</html>
