@@ -13,13 +13,13 @@
                       oninput='up2.setCustomValidity(up2.value != up.value ? "Salasanat eivät täsmää." : "")'>
                     <p>
                     <label for="first_name">Etunimi:</label><br>
-                    <input type="text" name="first_name" required title="Täytä puuttuva tieto">
+                    <input type="text" name="first_name" required title="Täytä puuttuva tieto"></p>
                     <p>
                     <label for="last_name">Sukunimi:</label><br>
-                    <input type="text" name="last_name" required title="Täytä puuttuva tieto">
+                    <input type="text" name="last_name" required title="Täytä puuttuva tieto"></p>
                     <p>
                     <label for="phone">Puhelinnumero:</label><br>
-                    <input type="tel" name="phone" placeholder="0401234567" required title="Täytä puuttuva tieto">
+                    <input type="tel" name="phone" placeholder="0401234567" required title="Täytä puuttuva tieto"></p>
                     <p>
                     <label for="username">Käyttäjätunnus:</label><br>
                     <input type="text" name="username" minlength="6" required title="Käyttäjätunnuksen tulee olla vähintään 6 merkkiä pitkä."></p>
@@ -28,15 +28,18 @@
                     <input type="text" name="email" required title="Täytä puuttuva tieto"></p>
                     <p>
                     <label for="password1">Salasana:</label><br>
-                    <input id="password1" type=password required title="Täytä puuttuva tieto" name=up>
+                    <input id="password1" type=password required pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{6,}" title="Salasanan tulee olla vähintään 6 merkkiä pitkä ja sen tulee sisältää vähintään:
+1 iso kirjain, 
+1 pieni kirjain ja 
+1 numero" name=up></p>
                     <p>
                     <label for="password2">Vahvista salasana:</label><br>
-                    <input id="password2" type=password name=up2>
+                    <input id="password2" type=password name=up2></p>
                     <p>
                     <p>
-                    <input type="checkbox" name="GDPR" value="1" required title="Lue ja hyväksy tietosuojaseloste"> Olen lukenut ja hyväksyn <a href="/GDPR" target="_blank"> tietosuojaselosteen</a>
-                    </p>
-                    <input type="submit" value="Luo uusi tunnus">
+                    <input type="checkbox" name="GDPR" value="1" required> Olen lukenut ja hyväksyn <a href="/GDPR" target="_blank"> tietosuojaselosteen</a></p>
+                    <p>
+                    <input type="submit" value="Luo uusi tunnus"></p>
                 </form>
             </div>
         </div>
