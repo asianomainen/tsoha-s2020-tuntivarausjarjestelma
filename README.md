@@ -42,6 +42,7 @@ Sovellus kehitetään liikuntatuntien varaamiseen. Käyttäjä voi luoda käytt�
 - [x] HTML-sivupohjan luominen ja sen käyttöönotto
 - [ ] Käyttäjätietojen vaatimusten määrittely (käyttäjätunnuksen pituus, salasanan pituus, liikuntatunnnin kesto, yms.)
 - [ ] Sovelluksen ulkoasun toteutus
+- [ ] Tietosuojaseloste
 
 <hr>
 <h2>Sovelluksen testaaminen:</h2>
