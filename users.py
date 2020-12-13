@@ -34,10 +34,9 @@ def logout():
         return
 
 def register(username, hash_value, first_name, last_name, email, phone):
-    sql = "SELECT username FROM users WHERE username=:username"
+    sql = "SELECT username FROM users WHERE LOWER(username)=LOWER(:username)"
     result = db.session.execute(sql, {"username":username})
     user = result.fetchone()
-    # Bug: 2 x Flash when creating account with existing username
     if user is None:
         sql = "INSERT INTO users (username, password, first_name, last_name, email, phone) " \
               "VALUES (:username, :password, :first_name, :last_name, :email, :phone)"
