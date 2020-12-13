@@ -11,11 +11,11 @@ body {
     margin-left: auto;
     width: 2000px;
     height: 1365px;
-    background-image: url("/static/movemint_background.jpg");
+    /* background-image: url("/static/movemint_background.jpg");
     background-position: center center;
     background-repeat: no-repeat;
     background-attachment: fixed;
-    background-size: cover;
+    background-size: cover; */
 }
 
 table {

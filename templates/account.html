@@ -2,29 +2,31 @@
 {% extends "layout.html" %}
 
 {% block content %}
-<div class="container-fluid">
-    <div class="card border-0 shadow my-5">
-        <div class="card-body p-5">
-            <h2>Muokkaa käyttäjätietoja:</h2>
-            <div style="height: 700px">
-                <form action="/account_update/{{ id }}" method="POST">
-                    Etunimi:
-                    <input type="text" name="first_name" value="{{ user_information[0] }}" required><br /><br />
-                    Sukunimi:
-                    <input type="text" name="last_name" value="{{ user_information[1] }}" required><br /><br />
-                    Sähköposti:
-                    <input type="text" name="email" value="{{ user_information[2] }}" required><br /><br />
-                    Puhelinnumero:
-                    <input type="text" name="phone" value="{{ user_information[3] }}" required><br /><br />
-                    <input type="hidden" name="csrf_token" value="{{ session.csrf_token }}">
-                    <input type="submit" value="Tallenna muutokset">
-                </form><br>
-                <form action="/remove_account/{{ id }}">
-                    <input type="hidden" name="csrf_token" value="{{ session.csrf_token }}">
-                    <button type="submit" class="btn btn-danger">Poista käyttäjä</button>
-                </form>
+<body></body>
+    <div class="container">
+        <div class="card border-0 shadow my-5">
+            <div class="card-body p-5">
+                <h2>Muokkaa käyttäjätietoja:</h2>
+                <div style="height: 700px">
+                    <form action="/account_update/{{ id }}" method="POST">
+                        Etunimi:
+                        <input type="text" name="first_name" value="{{ user_information[0] }}" required><br /><br />
+                        Sukunimi:
+                        <input type="text" name="last_name" value="{{ user_information[1] }}" required><br /><br />
+                        Sähköposti:
+                        <input type="text" name="email" value="{{ user_information[2] }}" required><br /><br />
+                        Puhelinnumero:
+                        <input type="text" name="phone" value="{{ user_information[3] }}" required><br /><br />
+                        <input type="hidden" name="csrf_token" value="{{ session.csrf_token }}">
+                        <input type="submit" value="Tallenna muutokset">
+                    </form><br>
+                    <form action="/remove_account/{{ id }}">
+                        <input type="hidden" name="csrf_token" value="{{ session.csrf_token }}">
+                        <button type="submit" class="btn btn-danger">Poista käyttäjä</button>
+                    </form>
+                </div>
             </div>
         </div>
     </div>
-</div>
+</body>
 {% endblock %}

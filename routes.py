@@ -58,7 +58,7 @@ def new_lesson():
 
             lessons.new_lesson(name, spots, date, starts, ends)
 
-            return redirect("/")
+            return redirect("/admin_all_lessons")
     else:
         abort(403)
 
@@ -71,7 +71,7 @@ def sign_up():
 
     lessons.sign_up(user_id, lesson_id)
 
-    return redirect("/")
+    return redirect("/user_all_lessons")
 
 @app.route("/undo_sign_up", methods=["POST"])
 def undo_sign_up():
@@ -82,7 +82,7 @@ def undo_sign_up():
 
     lessons.undo_sign_up(user_id, lesson_id)
 
-    return redirect("/")
+    return redirect("/user_all_lessons")
 
 @app.route("/account/<int:id>")
 def account(id):
@@ -140,7 +140,7 @@ def all_users():
         abort(403)
 
 @app.route("/admin_all_lessons")
-def all_lessons():
+def admin_all_lessons():
     user_id = session["user_id"]
     if users.is_admin(user_id):
         all_lessons = lessons.get_lessons()
@@ -149,7 +149,7 @@ def all_lessons():
         abort(403)
 
 @app.route("/user_all_lessons")
-def al_lessons():
+def user_all_lessons():
     try:
         user_id = session["user_id"]
         all_lessons = lessons.get_lessons()
@@ -182,12 +182,12 @@ def lesson_update(id):
 
     lessons.lesson_update(name, spots, date, starts, ends, id)
 
-    return redirect("/all_lessons")
+    return redirect("/admin_all_lessons")
 
 @app.route("/remove_lesson/<int:id>")
 def remove_lesson(id):
     lessons.remove_lesson(id)
-    return redirect("/all_lessons")
+    return redirect("/admin_all_lessons")
 
 @app.route("/remove_participant/<int:user_id>/<int:lesson_id>")
 def remove_participant(user_id, lesson_id):

@@ -1,18 +1,21 @@
 <!doctype html>
 <html lang="en">
 {% extends "layout.html" %}
+{% if session.user_id %}
+
+{% else %}
 {% block content %}
 <body>
-    <div class="index">
+    <div class="container index">
         <div class="card border-0 shadow my-5">
             <div class="card-body p-5">
-                <h2>Tervetuloa</h2>
+                <h1>Tervetuloa Movemintin tuntivarausjärjestelmään!</h1>
                 <div style="height: 700px">
-                    
                 </div>
             </div>
         </div>
     </div>
 </body>
 {% endblock %}
+{% endif %}
 </html>
