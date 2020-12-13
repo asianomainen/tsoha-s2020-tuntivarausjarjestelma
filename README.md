@@ -41,7 +41,7 @@ Sovellus kehitetään liikuntatuntien varaamiseen. Käyttäjä voi luoda käytt�
 - [x] HTML-sivupohjan luominen ja sen käyttöönotto
 - [x] Käyttäjätietojen vaatimusten määrittely (käyttäjätunnuksen pituus, salasanan pituus, liikuntatunnnin kesto, yms.)
 - [x] Sovelluksen ulkoasun toteutus
-- [ ] Tietosuojaseloste
+- [x] Tietosuojaseloste (kirjoitetaan loppuun myöhemmin)
 
 <hr>
 <h2>Sovelluksen testaaminen:</h2>
@@ -54,20 +54,21 @@ Sovellusta voi testata yllä mainittujen ominaisuuksien puitteissa. Testaaja voi
 <hr>
 <h3>Käyttäjä</h3>
 <br>
-<b>Käyttäjänimi:</b> testi<br>
-<b>Salasana:</b> testi<br /><br />
+<b>Käyttäjänimi:</b> Testi1<br>
+<b>Salasana:</b> Testi1<br /><br />
 
-Sisäänkirjauduttuaan käyttäjä näkee etusivulla linkit muille sivuille ("Etusivu", "Käyttäjätiedot" ja "Kirjaudu ulos") ja kaksi valmiiksi luotua liikuntatuntia, jolle hän voi ilmoittautua (ja perua ilmoittautumisensa).<br /><br />
+Sisäänkirjauduttuaan käyttäjä näkee etusivulla linkit muille sivuille ("Etusivu", "Kaikki tunnit", "Omat tunnit", "Käyttäjätiedot" ja "Kirjaudu ulos") ja neljä valmiiksi luotua liikuntatuntia, jolle hän voi ilmoittautua (ja perua ilmoittautumisensa).<br /><br />
 Testatessa kannattaa huomioida sivun yläreunassa näkyvät viestit, esim. "Käyttäjätunnus tai salasana väärin.", "Ilmoittautuminen onnistui", yms.<br /><br />
 Mikäli kirjautumista yritetään tunnuksilla, joita ei ole luotu tai salasana syötetään väärin, niin käyttäjä saa ilmoitukset "Käyttäjätunnus tai salasana väärin."<br /><br />
 Käyttäjä voi ilmoittautua vain kerran yhdelle tunnille. Hän ei myöskään voi perua ilmoittautumistaan mikäli hän ei ole ilmoittautunut tunnille.<br /><br />
+Testaaja voi tarkastella kaikkia tulevia tunteja "Kaikki tunnit" sivulla tai pelkästään tunteja joille hän on ilmoittautunut "Omat tunnnit" sivulla.
 Testaaja voi myös hallinnoida käyttäjätietojaan etusivulla olevalla "Käyttäjätiedot" linkillä. Käyttäjätiedot-sivulla testaaja voi muokata käyttäjän tietoja tai poistaa käyttäjän kokonaan (testaamista varten luotua "testi" käyttäjää ei voi poistaa, mutta sen tietoja voi muokata).
 <hr>
 <h3>Ylläpitäjä</h3>
 <br>
-<b>Käyttäjänimi:</b> admin<br>
-<b>Salasana:</b> admin<br /><br />
+<b>Käyttäjänimi:</b> Admin1<br>
+<b>Salasana:</b> Admin1<br /><br />
 
-Sisäänkirjauduttuaan ylläpitäjä näkee etusivulla linkit muille sivuille ("Etusivu", "Kaikki käyttäjät", "Kaikki tunnit", "Luo uusi liikuntatunti" ja "Kirjaudu ulos")<br /><br />
-Mikäli ylläpitäjä luo uuden liikuntatunnin, niin se lisätään etusivulla näkyvään listaan. Ylläpitäjä voi myös tarkastella kaikkia liikuntatunteja "Kaikki tunnit" sivulla sekä muokata tai poistaa tunteja.<br /><br />
-Testaaja voi ylläpitäjänä tarkastella "Kaikki käyttäjät" sivulla kaikkien käyttäjien tietoja, muokata niitä ja myös poistaa käyttäjiä kokonaan (testaamista varten luotua "testi" käyttäjää ei voi poistaa).
+Sisäänkirjauduttuaan ylläpitäjä näkee etusivulla linkit muille sivuille ("Etusivu", "Kaikki käyttäjät", "Kaikki tunnit", "Luo uusi liikuntatunti", "Palautteet" ja "Kirjaudu ulos")<br /><br />
+Mikäli ylläpitäjä luo uuden liikuntatunnin, niin se lisätään "Kaikki tunnit" sivulla näkyvään listaan. Samalla sivulla ylläpitäjä voi myös tarkastella kaikkia liikuntatunteja sekä muokata tai poistaa tunteja ja poistaa tuntien osallistujia.<br /><br />
+Testaaja voi ylläpitäjänä tarkastella "Kaikki käyttäjät" sivulla kaikkien käyttäjien tietoja, muokata niitä ja myös poistaa käyttäjiä kokonaan (testaamista varten luotua "Testi1" käyttäjää ei voi poistaa).
