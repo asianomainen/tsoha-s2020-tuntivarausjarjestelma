@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous">
-    <link rel="stylesheet" href="static/custom.css?version=123" runat="server">
+    <link rel="stylesheet" href="/static/custom.css?00111111111111111" runat="server">
 </head>
     
 {% for message in get_flashed_messages() %}
@@ -15,98 +15,95 @@
 {% if session.admin == True %}
 <h2><span style="background-color: #FFFF00">Olet kirjautunut ylläpitäjänä</span></h2>
 <body>
-    <div style="background-image: linear-gradient(to bottom, rgba(255,255,255,0.3) 0%,rgba(255,255,255,0.6) 100%), url(static/movemint_background.jpg)" class="page-holder bg-cover">
-        <nav class="navbar navbar-expand-md navbar-light bg-light sticky-top">
-            <div class="container-fluid">
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#collapse_target" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
+    <nav class="navbar navbar-expand-md navbar-light bg-light sticky-top">
+        <div class="container-fluid">
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#collapse_target" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
 
-                <div class="collapse navbar-collapse" id="collapse_target">
-                <a class="navbar-brand"><img src="static/movemint_logo.png"></a>
-                
-                    <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-                        <li class="nav-item">
-                            <a class="nav-link" href="/">Etusivu</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="/all_users">Kaikki käyttäjät</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="/all_lessons">Kaikki tunnit</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="/new_lesson">Luo uusi liikuntatunti</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="/logout">Kirjaudu ulos</a>
-                        </li>
-                    </ul>
-                </div>
+            <div class="collapse navbar-collapse" id="collapse_target">
+            <a class="navbar-brand"><img src="/static/movemint_logo.png"></a>
+            
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                    <li class="nav-item">
+                        <a class="nav-link" href="/">Etusivu</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/all_users">Kaikki käyttäjät</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/all_lessons">Kaikki tunnit</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/new_lesson">Luo uusi liikuntatunti</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/logout">Kirjaudu ulos</a>
+                    </li>
+                </ul>
             </div>
-        </nav>
+        </div>
+    </nav>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-ygbV9kiqUc6oa4msXn9868pTtWMgiQaeYH7/t7LECLbyPA2x65Kgf80OJFdroafW" crossorigin="anonymous"></script>
 </body>
 
 {% elif session.user_id %}
-<p>Olet kirjautunut tunnuksella {{ session.username }}</p>
+<!-- <p>Olet kirjautunut tunnuksella {{ session.username }}</p> -->
 <body>
-    <div style="background-image: linear-gradient(to bottom, rgba(255,255,255,0.3) 0%,rgba(255,255,255,0.6) 100%), url(static/movemint_background.jpg)" class="page-holder bg-cover">
-        <nav class="navbar navbar-expand-md navbar-light bg-light sticky-top">
-            <div class="container-fluid">
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#collapse_target" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-    
-                <div class="collapse navbar-collapse" id="collapse_target">
-                    <a class="navbar-brand"><img src="static/movemint_logo.png"></a>
-                
-                    <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-                        <li class="nav-item">
-                            <a class="nav-link" href="/">Etusivu</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="/my_lessons/{{ session.user_id }}">Omat tunnit</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="/account/{{ session.user_id }}">Käyttäjätiedot</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="/logout">Kirjaudu ulos</a>
-                        </li>
-                    </ul>
-                </div>
+    <nav class="navbar navbar-expand-md navbar-light bg-light sticky-top">
+        <div class="container-fluid">
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#collapse_target" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <div class="collapse navbar-collapse" id="collapse_target">
+                <a class="navbar-brand"><img src="/static/movemint_logo.png"></a>
+            
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                    <li class="nav-item">
+                        <a class="nav-link" href="/">Etusivu</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/my_lessons/{{ session.user_id }}">Omat tunnit</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/account/{{ session.user_id }}">Käyttäjätiedot</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/logout">Kirjaudu ulos</a>
+                    </li>
+                </ul>
             </div>
-        </nav>
+        </div>
+    </nav>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-ygbV9kiqUc6oa4msXn9868pTtWMgiQaeYH7/t7LECLbyPA2x65Kgf80OJFdroafW" crossorigin="anonymous"></script>
 </body>
 
 {% else %}
 <body>
-    <div style="background-image: linear-gradient(to bottom, rgba(255,255,255,0.3) 0%,rgba(255,255,255,0.6) 100%), url(static/movemint_background.jpg)" class="page-holder bg-cover">
-        <nav class="navbar navbar-expand-md navbar-light bg-light sticky-top">
-            <div class="container-fluid">
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#collapse_target" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-    
-                <div class="collapse navbar-collapse" id="collapse_target">
-                    <a class="navbar-brand"><img src="static/movemint_logo.png"></a>
-                
-                    <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-                        <li class="nav-item">
-                            <a class="nav-link" href="/">Etusivu</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="/my_lessons/{{ session.user_id }}">Tunnit</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="/login">Kirjaudu</a>
-                        </li>
-                    </ul>
-                </div>
+    <nav class="navbar navbar-expand-md navbar-light bg-light sticky-top">
+        <div class="container-fluid">
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#collapse_target" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <div class="collapse navbar-collapse" id="collapse_target">
+                <a class="navbar-brand"><img src="/static/movemint_logo.png"></a>
+            
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                    <li class="nav-item">
+                        <a class="nav-link" href="/">Etusivu</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/my_lessons/{{ session.user_id }}">Tunnit</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/login">Kirjaudu</a>
+                    </li>
+                </ul>
             </div>
-        </nav>
+        </div>
+    </nav>
 {% endif %}
     <div class="content">
         {% block content %}{% endblock %}
