@@ -1,25 +1,31 @@
 <!doctype html>
+<html lang="en">
 {% extends "layout.html" %}
-
 {% block content %}
-<h2>Luo uusi tunti</h2>
-<form action="/new_lesson" method="POST">
+<div class="container">
+    <div class="card border-0 shadow my-5">
+        <div class="card-body p-5">
+            <h2>Luo uusi tunti</h2>
+            <div style="height: 700px">
+                <form action="/new_lesson" method="POST">
+                    <p>Nimi:<br>
+                    <input type="text" name="name" required></p>
 
-<p>Nimi:<br>
-<input type="text" name="name" required></p>
+                    <p>Paikkoja:<br>
+                    <input type="text" name="spots" required></p>
 
-<p>Paikkoja:<br>
-<input type="text" name="spots" required></p>
+                    <p>Päivä:<br>
+                    <input type="date" name="date" required></p>
 
-<p>Päivä:<br>
-<input type="date" name="date" required></p>
+                    <p>Aika:<br>
+                    <input type="time" name="starts" required> - <input type="time" name="ends" required></p>
 
-<p>Aika:<br>
-<input type="time" name="starts" required> - <input type="time" name="ends" required></p>
-
-<input type="hidden" name="csrf_token" value="{{ session.csrf_token }}">
-
-<input type="submit" value="Luo uusi tunti">
-
-</form>
+                    <input type="hidden" name="csrf_token" value="{{ session.csrf_token }}">
+                    <input type="submit" value="Luo uusi tunti">
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
 {% endblock %}
+</html>

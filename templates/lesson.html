@@ -1,61 +1,46 @@
 <!doctype html>
+<html lang="en">
 {% extends "layout.html" %}
-
 {% block content %}
 Muokkaa tunnin tietoja:<br>
 <form action="/lesson_update/{{ id }}" method="POST">
-Nimi:
-<input type="text" name="name" value="{{ lesson_information[0] }}" required><br /><br />
-Paikkoja:
-<input type="text" name="spots" value="{{ lesson_information[1] }}" required><br /><br />
-Päivä:
-<input type="date" name="date" value="{{ lesson_information[2] }}" required><br /><br />
-Aika:
-<input type="time" name="starts" value="{{ lesson_information[3] }}" required> - <input type="time" name="ends" value="{{ lesson_information[4] }}" required><br /><br />
-<input type="hidden" name="csrf_token" value="{{ session.csrf_token }}">
-<input type="submit" value="Tallenna muutokset">
+    Nimi:
+    <input type="text" name="name" value="{{ lesson_information[0] }}" required><br /><br />
+    Paikkoja:
+    <input type="text" name="spots" value="{{ lesson_information[1] }}" required><br /><br />
+    Päivä:
+    <input type="date" name="date" value="{{ lesson_information[2] }}" required><br /><br />
+    Aika:
+    <input type="time" name="starts" value="{{ lesson_information[3] }}" required> - <input type="time" name="ends" value="{{ lesson_information[4] }}" required><br /><br />
+    <input type="hidden" name="csrf_token" value="{{ session.csrf_token }}">
+    <input type="submit" value="Tallenna muutokset">
 </form><br>
 <form action="/remove_lesson/{{ id }}">
-<input type="submit" value="Poista tunti">
+    <input type="submit" value="Poista tunti">
 </form>
 
-<style>
-    table {
-      font-family: arial, sans-serif;
-      border-collapse: collapse;
-      width: 75%;
-    }
-    td, th {
-      border: 1px solid #dddddd;
-      text-align: left;
-      padding: 8px;
-    }
-    tr:nth-child(even) {
-      background-color: #dddddd;
-    }
-</style>
 <h2>Osallistujat</h2>
 <table id="all_users">
-  <tr>
-    <th>Käyttäjänimi</th>
-    <th>Etunimi</th>
-    <th>Sukunimi</th>
-    <th>Sähköposti</th>
-    <th>Puhelinnumero</th>
-    <th></th>
-  </tr>
-  <tr>
-    {% for participant in participants %}
-    <td>{{ participant[1] }}</td>
-    <td>{{ participant[2] }}</td>
-    <td>{{ participant[3] }}</td>
-    <td>{{ participant[4] }}</td>
-    <td>{{ participant[5] }}</td>
-    <td>
-        <a href="/remove_participant/{{ participant[0] }}/{{ id }}">Poista käyttäjä tunnilta</a>
-    </td>
-  </tr>
-  {% endfor%}
+    <tr>
+        <th>Käyttäjänimi</th>
+        <th>Etunimi</th>
+        <th>Sukunimi</th>
+        <th>Sähköposti</th>
+        <th>Puhelinnumero</th>
+        <th></th>
+    </tr>
+    <tr>
+        {% for participant in participants %}
+        <td>{{ participant[1] }}</td>
+        <td>{{ participant[2] }}</td>
+        <td>{{ participant[3] }}</td>
+        <td>{{ participant[4] }}</td>
+        <td>{{ participant[5] }}</td>
+        <td>
+            <a href="/remove_participant/{{ participant[0] }}/{{ id }}">Poista käyttäjä tunnilta</a>
+        </td>
+    </tr>
+        {% endfor%}
 </table>
-
 {% endblock %}
+</html>

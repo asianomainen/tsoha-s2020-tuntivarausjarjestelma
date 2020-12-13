@@ -2,7 +2,7 @@
 {% extends "layout.html" %}
 
 {% block content %}
-Muokkaa käyttäjätietoja:<br>
+Muokkaa käyttäjätietoja:<br><br>
 <form action="/account_update/{{ id }}" method="POST">
 Etunimi:
 <input type="text" name="first_name" value="{{ user_information[0] }}" required><br /><br />

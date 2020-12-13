@@ -1,27 +1,43 @@
-<a href="/">Peruuta</a>
-<form action="/register" method="POST"
-      oninput='up2.setCustomValidity(up2.value != up.value ? "Salasanat eivät täsmää." : "")'>
-    <p>
-    <label for="first_name">Etunimi:</label><br>
-    <input type="text" name="first_name" required>
-    <p>
-    <label for="last_name">Sukunimi:</label><br>
-    <input type="text" name="last_name" required>
-    <p>
-    <label for="phone">Puhelinnumero:</label><br>
-    <input type="tel" name="phone" placeholder="0401234567" required>
-    <p>
-    <label for="username">Käyttäjätunnus:</label><br>
-    <input type="text" name="username" minlength="6" required></p>
-    <p>
-    <label for="email">Sähköposti:</label><br>
-    <input type="text" name="email" required></p>
-    <p>
-    <label for="password1">Salasana:</label><br>
-    <input id="password1" type=password required name=up>
-    <p>
-    <label for="password2">Vahvista salasana:</label><br>
-    <input id="password2" type=password name=up2>
-    <p>
-    <input type="submit" value="Luo uusi tunnus">
-</form>
+<!DOCTYPE html>
+<html lang="en">
+{% extends "layout.html" %}
+{% block content %}
+
+<div class="container">
+    <div class="card border-0 shadow my-5">
+        <div class="card-body p-5">
+            <a href="/login">Peruuta</a>
+            <h2>Kirjaudu</h2>
+            <div style="height: 700px">
+                <form action="/register" method="POST"
+                      oninput='up2.setCustomValidity(up2.value != up.value ? "Salasanat eivät täsmää." : "")'>
+                    <p>
+                    <label for="first_name">Etunimi:</label><br>
+                    <input type="text" name="first_name" required>
+                    <p>
+                    <label for="last_name">Sukunimi:</label><br>
+                    <input type="text" name="last_name" required>
+                    <p>
+                    <label for="phone">Puhelinnumero:</label><br>
+                    <input type="tel" name="phone" placeholder="0401234567" required>
+                    <p>
+                    <label for="username">Käyttäjätunnus:</label><br>
+                    <input type="text" name="username" minlength="6" required></p>
+                    <p>
+                    <label for="email">Sähköposti:</label><br>
+                    <input type="text" name="email" required></p>
+                    <p>
+                    <label for="password1">Salasana:</label><br>
+                    <input id="password1" type=password required name=up>
+                    <p>
+                    <label for="password2">Vahvista salasana:</label><br>
+                    <input id="password2" type=password name=up2>
+                    <p>
+                    <input type="submit" value="Luo uusi tunnus">
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+</html>

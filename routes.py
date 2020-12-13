@@ -23,8 +23,10 @@ def login():
     if request.method == "POST":
         username = request.form["username"]
         password = request.form["password"]
-        users.login(username, password)
-        return redirect("/")
+        if users.login(username, password):
+            return redirect("/")
+        else:
+            return render_template("/login.html")
 
 @app.route("/logout")
 def logout():

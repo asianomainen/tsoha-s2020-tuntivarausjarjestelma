@@ -1,43 +1,38 @@
 <!doctype html>
+<link rel="stylesheet" href="static/custom.css?version=123">
+
 {% extends "layout.html" %}
 
 {% block content %}
-<style>
-    table {
-      font-family: arial, sans-serif;
-      border-collapse: collapse;
-      width: 50%;
-    }
-    td, th {
-      border: 1px solid #dddddd;
-      text-align: left;
-      padding: 8px;
-    }
-    tr:nth-child(even) {
-      background-color: #dddddd;
-    }
-</style>
-<h2>Käyttäjät</h2>
-<table id="all_users">
-  <tr>
-    <th>Käyttäjänimi</th>
-    <th>Etunimi</th>
-    <th>Sukunimi</th>
-    <th>Sähköposti</th>
-    <th>Puhelinnumero</th>
-    <th></th>
-  </tr>
-  <tr>
-    {% for user in users %}
-    <td>{{ user[1] }}</td>
-    <td>{{ user[2] }}</td>
-    <td>{{ user[3] }}</td>
-    <td>{{ user[4] }}</td>
-    <td>{{ user[5] }}</td>
-    <td>
-        <a href="/account/{{ user[0] }}">Muokkaa</a>
-    </td>
-  </tr>
-  {% endfor%}
-</table>
+<div class="container">
+  <div class="card border-0 shadow my-5">
+    <div class="card-body p-5">
+      <h2>Kaikki käyttäjät</h2>
+      <div style="height: 700px">
+        <table class="table table-hover table-fixed" id="all_users">
+          <tr>
+            <th>Käyttäjänimi</th>
+            <th>Etunimi</th>
+            <th>Sukunimi</th>
+            <th>Sähköposti</th>
+            <th>Puhelinnumero</th>
+            <th></th>
+          </tr>
+          <tr>
+            {% for user in users %}
+            <td>{{ user[1] }}</td>
+            <td>{{ user[2] }}</td>
+            <td>{{ user[3] }}</td>
+            <td>{{ user[4] }}</td>
+            <td>{{ user[5] }}</td>
+            <td>
+                <a href="/account/{{ user[0] }}">Muokkaa</a>
+            </td>
+          </tr>
+          {% endfor%}
+        </table>
+      </div>
+    </div>
+  </div>
+</div>
 {% endblock %}

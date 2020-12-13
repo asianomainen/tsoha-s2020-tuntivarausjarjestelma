@@ -1,68 +1,68 @@
 <!doctype html>
+<head>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+    <script src="static/scripts.js"></script>
+    <link rel="stylesheet" href="static/custom.css?version=123">
+</head>
+
 {% extends "layout.html" %}
 
 {% block content %}
-<style>
-    table {
-    font-family: arial, sans-serif;
-    border-collapse: collapse;
-    width: 50%;
-    }
-    td, th {
-    border: 1px solid #dddddd;
-    text-align: left;
-    padding: 8px;
-    }
-    tr:nth-child(even) {
-    background-color: #dddddd;
-    }
-</style>
-<h2>Tunnit</h2>
-<table id="all_lessons">
-<tr>
-    <th>Nimi</th>
-    <th>Päivä</th>
-    <th>Aika</th>
-    <th></th>
-</tr>
 
-{% for lesson in lessons %}
-<tr>
-    <td>{{ lesson[1] }}</td>
-    <td>{{ lesson[2].strftime('%d.%m.%Y') }}</td>
-    <td>{{ lesson[3].strftime('%H:%M') }} - {{ lesson[4].strftime('%H:%M') }}</td>
-    <td>
-        {% if session.user_id %}
-
-        {% set ns = namespace(found=false) %}
-
-        {% for user_lesson in user_lessons %}
-            {% if user_lesson[0] == lesson[0] %}
-                {% set ns.found = true %}
-            {% endif %}
-        {% endfor%}
-
-        {% if ns.found %}
-        <form action="/undo_sign_up" method="POST">
-            <input type="hidden" id="id" name="id" value="{{ lesson[0] }}">
-            <input type="hidden" name="csrf_token" value="{{ session.csrf_token }}">
-            <input type="submit" value="Peru"><br>
-        </form>
-        {% elif lesson[5] == 0 %}
-        <button type="button" onclick="alert('Tunti on täynnä')">Tunti on täynnä</button><br>
-        {% else %}
-        <form action="/sign_up" method="POST">
-            <input type="hidden" id="id" name="id" value="{{ lesson[0] }}">
-            <input type="hidden" name="csrf_token" value="{{ session.csrf_token }}">
-            <input type="submit" value="Varaa"><br>
-        </form>
-        {% endif %}
-
-        {% else %}
-        <button type="button" onclick="alert('Kirjaudu sisään ilmoittautuaksesi tunnille.')">Kirjaudu</button><br>
-        {% endif %}
-    </td>
-</tr>
-{% endfor%}
-</table>
+<div class="container">
+    <div class="card border-0 shadow my-5">
+        <div class="card-body p-5">
+            <h2>Tunnit</h2>
+            <div style="height: 700px">
+                <table class="table table-hover table-fixed" id="all_lessons">
+                    <tr>
+                        <th>Nimi</th>
+                        <th>Päivä</th>
+                        <th>Aika</th>
+                        <th></th>
+                    </tr>
+                    
+                    {% for lesson in lessons %}
+                    <tr>
+                        <td>{{ lesson[1] }}</td>
+                        <td>{{ lesson[2].strftime('%d.%m.%Y') }}</td>
+                        <td>{{ lesson[3].strftime('%H:%M') }} - {{ lesson[4].strftime('%H:%M') }}</td>
+                        <td>
+                            {% if session.user_id %}
+                    
+                            {% set ns = namespace(found=false) %}
+                    
+                            {% for user_lesson in user_lessons %}
+                                {% if user_lesson[0] == lesson[0] %}
+                                    {% set ns.found = true %}
+                                {% endif %}
+                            {% endfor%}
+                    
+                            {% if ns.found %}
+                            <form action="/undo_sign_up" method="POST">
+                                <input type="hidden" id="lesson_id" name="lesson_id" value="{{ lesson[0] }}">
+                                <input type="hidden" name="csrf_token" value="{{ session.csrf_token }}">
+                                <input type="submit" value="Peru"><br>
+                            </form>
+                            {% elif lesson[5] == 0 %}
+                            <button type="button" onclick="alert('Tunti on täynnä')">Tunti on täynnä</button><br>
+                            {% else %}
+                            <form action="/sign_up" method="POST">
+                                <input type="hidden" id="id" name="id" value="{{ lesson[0] }}">
+                                <input type="hidden" name="csrf_token" value="{{ session.csrf_token }}">
+                                <input type="submit" value="Varaa"><br>
+                            </form>
+                            {% endif %}
+                    
+                            {% else %}
+                            <button type="button" onclick="alert('Kirjaudu sisään ilmoittautuaksesi tunnille.')">Kirjaudu</button><br>
+                            {% endif %}
+                        </td>
+                    </tr>
+                    {% endfor%}
+                    </table>
+            </div>
+        </div>
+    </div>
+  </div>
 {% endblock %}

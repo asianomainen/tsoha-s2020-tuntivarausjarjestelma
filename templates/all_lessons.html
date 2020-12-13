@@ -1,41 +1,36 @@
 <!doctype html>
+<link rel="stylesheet" href="static/custom.css?version=123">
+
 {% extends "layout.html" %}
 
 {% block content %}
-<style>
-    table {
-      font-family: arial, sans-serif;
-      border-collapse: collapse;
-      width: 50%;
-    }
-    td, th {
-      border: 1px solid #dddddd;
-      text-align: left;
-      padding: 8px;
-    }
-    tr:nth-child(even) {
-      background-color: #dddddd;
-    }
-</style>
-<h2>Tunnit</h2>
-<table id="all_lessons">
-  <tr>
-    <th>Nimi</th>
-    <th>Paikkoja jäljellä</th>
-    <th>Päivä</th>
-    <th>Aika</th>
-    <th></th>
-  </tr>
-  <tr>
-    {% for lesson in lessons %}
-    <td>{{ lesson[1] }}</td>
-    <td>{{ lesson[5] }}</td>
-    <td>{{ lesson[2].strftime('%d.%m.%Y') }}</td>
-    <td>{{ lesson[3].strftime('%H:%M') }} - {{ lesson[4].strftime('%H:%M') }}</td>
-    <td>
-        <a href="/lesson/{{ lesson[0] }}">Muokkaa</a>
-    </td>
-  </tr>
-  {% endfor%}
-</table>
+<div class="container">
+  <div class="card border-0 shadow my-5">
+    <div class="card-body p-5">
+      <h2>Kaikki tunnit</h2>
+      <div style="height: 700px">
+        <table class="table table-hover table-fixed" id="all_lessons">
+          <tr>
+            <th>Nimi</th>
+            <th>Paikkoja jäljellä</th>
+            <th>Päivä</th>
+            <th>Aika</th>
+            <th></th>
+          </tr>
+          <tr>
+            {% for lesson in lessons %}
+            <td>{{ lesson[1] }}</td>
+            <td>{{ lesson[5] }}</td>
+            <td>{{ lesson[2].strftime('%d.%m.%Y') }}</td>
+            <td>{{ lesson[3].strftime('%H:%M') }} - {{ lesson[4].strftime('%H:%M') }}</td>
+            <td>
+              <a href="/lesson/{{ lesson[0] }}">Muokkaa</a>
+            </td>
+          </tr>
+          {% endfor%}
+        </table>
+      </div>
+    </div>
+  </div>
+</div>
 {% endblock %}
